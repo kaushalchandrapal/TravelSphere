@@ -57,7 +57,7 @@ const Profile = () => {
       <Paper className="profile-additional-info">
         <Typography variant="h6">Recent Trips</Typography>
         <Typography variant="body1">Trip to Iceland - March 2024</Typography>
-        <Typography variant="body1">Backpacking in Japan - October 2023</Typography>
+        <Typography variant="body1">Backpacking in canada - October 2023</Typography>
         {/* Add more travel information here */}
       </Paper>
     </div>
