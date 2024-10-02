@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import {
-     CreateLiveUpdates,
-     Post,
+  CreateLiveUpdates,
+  Post,
   Plan,
   Feed,
   ManageExpense,
@@ -13,11 +13,20 @@ import {
 import { Route, Routes } from "react-router-dom";
 import { Navbar } from "./components";
 import Path from "./constants/Path";
+import Login from "./components/loginModule/login";
+import RegistrationForm from "./components/loginModule/register";
+import Forgotpass from "./components/loginModule/forgotpass";
 
 function App() {
   return (
     <div>
-      <Navbar />
+      <Routes>
+        <Route path={Path.LOGIN} element={<Login />} />
+        <Route path={Path.REGISTER} element={<RegistrationForm />} />
+        <Route path={Path.FORGOTPASS} element={<Forgotpass />} />
+      </Routes>
+
+      {/* <Navbar /> */}
 
       <Routes>
         <Route path={Path.HOME} element={<Feed />} />
