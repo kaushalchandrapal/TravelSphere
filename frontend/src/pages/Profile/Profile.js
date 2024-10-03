@@ -1,67 +1,46 @@
-import React from "react";
-import { Avatar, Button, Card, CardContent, Typography, Grid, Paper } from "@mui/material";
-import { useState } from "react";
-import './Profile.css'; // Import the CSS file for profile page styles
-import EditIcon from "@mui/icons-material/Edit";
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { Button } from '../../components';
+import { Navbar } from "../../components";
+// import { IconComponent } from '../../components';
 
 const Profile = () => {
-  const [editMode, setEditMode] = useState(false);
-
-  const handleEditClick = () => {
-    setEditMode(!editMode);
+    const [isOpen, setIsOpen] = useState(true);
+  
+    const settingButtonClick = () => {
+      setIsOpen(!isOpen);
+    };
+  
+    return (
+        <>
+        <Navbar />
+      <div className="profile_page_div">
+        <div className="profile_container">
+          <div className="profile_pic_and_userName">
+            <div className="profile_edit_button_in_profile_page">
+              <div className="edit_profile_and_setting_btn_div">
+                {/* Logout Button */}
+                {/* <IconComponent
+                  className="setting_img_in_profile"
+                  name="setting"
+                  onClick={settingButtonClick}
+                /> */}
+              </div>
+            </div>
+            
+            {/* Show only Logout button */}
+            {isOpen && (
+              <div className="settingsModal" color="blue">
+                <Link to={'/'}>
+                  <Button variant="blue" name="Logout" />
+                </Link>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+      </>
+    );
   };
-
-  return (
-    <div className="profile-container">
-      <Card className="profile-card">
-        <CardContent>
-          <Grid container spacing={2}>
-            <Grid item xs={12} md={4} className="profile-image-section">
-              <Avatar
-                alt="Profile Picture"
-                src="/Images/profilePic.jpg"
-                sx={{ width: 120, height: 120 }}
-                className="profile-avatar"
-              />
-              <Button
-                variant="contained"
-                color="primary"
-                startIcon={<EditIcon />}
-                onClick={handleEditClick}
-              >
-                {editMode ? "Save Changes" : "Edit Profile"}
-              </Button>
-            </Grid>
-
-            <Grid item xs={12} md={8} className="profile-info-section">
-              <Typography variant="h4" className="profile-name">
-                John Doe
-              </Typography>
-              <Typography variant="body1" className="profile-bio">
-                Travel enthusiast. Exploring the world, one destination at a time. Solo traveler. Adventure seeker.
-              </Typography>
-              <Typography variant="body2" className="profile-details">
-                Location: New York, USA
-              </Typography>
-              <Typography variant="body2" className="profile-details">
-                Travel Style: Adventure, Solo, Budget
-              </Typography>
-              <Typography variant="body2" className="profile-details">
-                Favorite Destinations: Iceland, Japan, Australia
-              </Typography>
-            </Grid>
-          </Grid>
-        </CardContent>
-      </Card>
-
-      <Paper className="profile-additional-info">
-        <Typography variant="h6">Recent Trips</Typography>
-        <Typography variant="body1">Trip to Iceland - March 2024</Typography>
-        <Typography variant="body1">Backpacking in canada - October 2023</Typography>
-        {/* Add more travel information here */}
-      </Paper>
-    </div>
-  );
-};
-
-export default Profile;
+  
+  export default Profile;

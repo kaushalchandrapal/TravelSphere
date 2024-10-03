@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import './CreatePlan.css';
 import '../../../components/Navbar/Navbar';
-import { InputField } from '../../../components';
+import { InputField, Navbar } from '../../../components';
 import TextArea from '../../../components/TextArea/TextArea';
 import { Button } from '../../../components';
 import { useNavigate } from 'react-router-dom';
@@ -61,7 +61,7 @@ function Plan() {
 			(async function () {
 				await axios({
 					method: 'post',
-					url: 'https://trip-ease-server.onrender.com/plan/create',
+					url: 'http://localhost:2020/plan/create',
 					data: {
 						firstName: formValues.firstName,
 						lastName: formValues.lastName,
@@ -160,6 +160,7 @@ function Plan() {
 
 	return (
 		<>
+		<Navbar />
 			<div className="page-container">
 				<div className="create-plan-page">
 					<div className="title">Create Plan</div>

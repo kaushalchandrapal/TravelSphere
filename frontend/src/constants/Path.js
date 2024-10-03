@@ -1,5 +1,5 @@
 const Path = {
-  HOME: "/",
+  HOME: "/home",
   FEED: "/feed",
   MANAGE_EXPENSES: "/manageExpense",
   MESSAGE: "/message",
@@ -9,7 +9,7 @@ const Path = {
   PROFILE_PAGE: "/profile",
   ALL_PLAN: "/plan",
   MY_PLAN: "/myplan",
-  LOGIN: "/login",
+  LOGIN: "/",
   REGISTER: "/register",
   FORGOTPASS: "/forgotpass",
   EMAIL_UPDATE: "/emailUpdate",
