@@ -6,8 +6,6 @@ import Path from '../../constants/Path';
 import Axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-const Host = process.env.REACT_APP_HOST_URL;
-
 function Login() {
     const initialValues = { email: '', password: '' };
 

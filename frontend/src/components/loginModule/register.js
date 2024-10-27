@@ -3,9 +3,8 @@ import './Style.css';
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Axios from 'axios';
+import Path from '../../constants/Path';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
-const Host = process.env.REACT_APP_HOST_URL;
 
 function RegistrationForm() {
     const initialValues = {
