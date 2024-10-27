@@ -1,10 +1,9 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import './Style.css';
+import './login.css';
 import { Link, useNavigate } from 'react-router-dom';
 import Path from '../../constants/Path';
 import Axios from 'axios';
-import 'bootstrap/dist/css/bootstrap.min.css';
 
 function Login() {
     const initialValues = { email: '', password: '' };
@@ -26,16 +25,14 @@ function Login() {
     };
 
     useEffect(() => {
-		console.log(formErrors);
         if (Object.keys(formErrors).length === 0 && isSubmit === true) {
-			console.log('Successful Login');
             nav(Path.PROFILE_PAGE);
         }
 
-		Axios.post('http://localhost:2020/register', {
-        emailid:formValues.email,
-        pass:formValues.password
-    })
+        Axios.post('http://localhost:2020/register', {
+            emailid: formValues.email,
+            pass: formValues.password
+        });
     }, [formErrors, isSubmit, nav]);
 
     const validate = (values) => {
@@ -58,71 +55,65 @@ function Login() {
     };
 
     return (
-        <div className="bg-light py-2">
-            <div className="container">
-                <div className="d-flex justify-content-between align-items-center mb-2">
-                    <div className="logo d-flex align-items-center">
-                        <span className="first-half-logo text-dark">TRAVEL</span>
-                        <span className="second-half-logo text-dark">SPHERE</span>
-                    </div>
+        <div className="login-container">
+            <div className="login-wrapper">
+                <div className="login-logo">
+                    <span className="first-logo">TRAVEL</span>
+                    <span className="second-logo">SPHERE</span>
                 </div>
 
-                <div className="card shadow-lg w-100 mx-auto" style={{ maxWidth: '750px' }}>
-                    <div className="row g-0">
-                        <div className="col-md-6 d-none d-md-block">
+                <div className="login-card">
+                    <div className="login-row">
+                        <div className="login-image">
                             <img
                                 src="/Images/login.png"
                                 alt="Travel"
-                                className="img-fluid h-100"
-                                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                                className="login-img"
                             />
                         </div>
 
-                        <div className="col-md-6">
-                            <div className="card-body p-4">
-                                <h4 className="card-title mb-3">Login to Your Account</h4>
+                        <div className="login-form-section">
+                            <div className="login-form-content">
+                                <h4 className="login-title">Login to Your Account</h4>
                                 <form onSubmit={handleSubmit} noValidate>
-                                    <div className="form-group mb-3">
+                                    <div className="form-group">
                                         <label htmlFor="email">Email</label>
                                         <input
                                             type="text"
-                                            className="form-control form-control-sm"
+                                            className="input-field"
                                             id="email"
                                             name="email"
                                             placeholder="Email"
                                             value={formValues.email}
                                             onChange={handleChange}
                                         />
-                                        <p className="text-danger small">{formErrors.email}</p>
+                                        <p className="error-message">{formErrors.email}</p>
                                     </div>
 
-                                    <div className="form-group mb-3">
+                                    <div className="form-group">
                                         <label htmlFor="password">Password</label>
                                         <input
                                             type="password"
-                                            className="form-control form-control-sm"
+                                            className="input-field"
                                             id="password"
                                             name="password"
                                             placeholder="Password"
                                             value={formValues.password}
                                             onChange={handleChange}
                                         />
-                                        <p className="text-danger small">{formErrors.password}</p>
+                                        <p className="error-message">{formErrors.password}</p>
                                     </div>
-
 
                                     <button
                                         type="submit"
-                                        className="btn w-100 btn-sm"
-                                        style={{ backgroundColor: '#2F2A99', color: 'white' }}
+                                        className="submit-btn"
                                     >
                                         Login
                                     </button>
 
-
-                                    <div className="d-flex justify-content-between mt-3">
-                                        <Link to={'/forgotpass'} className="small text-primary">Forgot Password?</Link>
-                                        <Link to={'/register'} className="small text-primary">New User? Register here</Link>
+                                    <div className="form-links">
+                                        <Link to={'/forgotpass'} className="link-text">Forgot Password?</Link>
+                                        <Link to={'/register'} className="link-text">New User? Register here</Link>
                                     </div>
                                 </form>
                             </div>

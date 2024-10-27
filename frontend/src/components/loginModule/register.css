@@ -1,0 +1,149 @@
+/* Global styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+}
+
+/* Registration Container */
+.registration-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f8f9fa;
+}
+
+.registration-wrapper {
+    max-width: 750px;
+    width: 100%;
+}
+
+/* Logo */
+.registration-logo {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.first-logo {
+    font-size: 28px;
+    color: #2F2A99;
+    font-weight: 700;
+}
+
+.second-logo {
+    font-size: 28px;
+    color: #243B55;
+    font-weight: 700;
+}
+
+/* Card */
+.registration-card {
+    display: flex;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    background-color: #fff;
+    overflow: hidden;
+}
+
+.registration-row {
+    display: flex;
+    width: 100%;
+}
+
+/* Image Section */
+.registration-image {
+    display: none;
+}
+
+.registration-img {
+    width: 100%;
+    height: 100%;
+    margin-left: 5px;
+    object-fit: cover;
+}
+
+@media (min-width: 768px) {
+    .registration-image {
+        display: block;
+        flex: 1;
+    }
+}
+
+/* Form Section */
+.registration-form-section {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.registration-form-content {
+    padding: 20px;
+    width: 100%;
+}
+
+.registration-title {
+    font-size: 24px;
+    font-weight: 600;
+    color: #243B55;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Form Elements */
+.form-group {
+    margin-bottom: 15px;
+}
+
+.input-field {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    margin-top: 5px;
+}
+
+.error-message {
+    font-size: 12px;
+    color: red;
+    margin-top: 5px;
+}
+
+/* Submit Button */
+.submit-btn {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    background-color: #2F2A99;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+    margin-top: 15px;
+    transition: background-color 0.3s;
+}
+
+.submit-btn:hover {
+    background-color: #243B55;
+}
+
+/* Links */
+.form-links {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
+.link-text {
+    font-size: 14px;
+    color: #2F2A99;
+    text-decoration: none;
+}
+
+.link-text:hover {
+    text-decoration: underline;
+}

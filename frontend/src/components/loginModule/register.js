@@ -1,10 +1,9 @@
 import { useState, useEffect } from 'react';
-import './Style.css';
+import './register.css'; // Custom CSS
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Axios from 'axios';
 import Path from '../../constants/Path';
-import 'bootstrap/dist/css/bootstrap.min.css';
 
 function RegistrationForm() {
     const initialValues = {
@@ -31,21 +30,18 @@ function RegistrationForm() {
         setIsSubmit(true);
     };
 
-	useEffect(() => {
-		console.log(formErrors);
-		if (Object.keys(formErrors).length === 0 && isSubmit === true) {
-			console.log('Successful registration');
-			nav(Path.PROFILE_PAGE);
-		}
+    useEffect(() => {
+        if (Object.keys(formErrors).length === 0 && isSubmit === true) {
+            nav(Path.PROFILE_PAGE);
+        }
 
-		Axios.post('http://localhost:2020/register', {
-        firstname:formValues.fname,
-        lastname:formValues.lname,
-        emailid:formValues.email,
-        pass:formValues.password
-    })
-	}, [formErrors, isSubmit, nav]);
-
+        Axios.post('http://localhost:2020/register', {
+            firstname: formValues.fname,
+            lastname: formValues.lname,
+            emailid: formValues.email,
+            pass: formValues.password
+        });
+    }, [formErrors, isSubmit, nav]);
 
     const validate = (values) => {
         const errors = {};
@@ -81,117 +77,113 @@ function RegistrationForm() {
         if (!values.cnfpassword) {
             errors.cnfpassword = 'Confirm password is required';
         } else if (values.cnfpassword !== values.password) {
-			errors.cnfpassword = "Password doesn't match";
+            errors.cnfpassword = "Password doesn't match";
         }
 
         return errors;
     };
 
     return (
-        <div className="bg-light py-2">
-            <div className="container">
-                <div className="d-flex justify-content-between align-items-center mb-2">
-                    <div className="d-flex align-items-center">
-                        <span className="first-half-logo text-dark">TRAVEL</span>
-                        <span className="second-half-logo text-dark">SPHERE</span>
-                    </div>
+        <div className="registration-container">
+            <div className="registration-wrapper">
+                <div className="registration-logo">
+                    <span className="first-logo">TRAVEL</span>
+                    <span className="second-logo">SPHERE</span>
                 </div>
 
-                <div className="card shadow-lg w-100 mx-auto" style={{ maxWidth: '750px' }}>
-                    <div className="row g-0">
-                        <div className="col-md-6 d-none d-md-block">
+                <div className="registration-card">
+                    <div className="registration-row">
+                        <div className="registration-image">
                             <img
                                 src="/Images/register.jpg"
                                 alt="Travel"
-                                className="img-fluid h-100"
-                                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                                className="registration-img"
                             />
                         </div>
 
-                        <div className="col-md-6">
-                            <div className="card-body p-4">
-                                <h4 className="card-title mb-3">Create your account</h4>
+                        <div className="registration-form-section">
+                            <div className="registration-form-content">
+                                <h4 className="registration-title">Create your account</h4>
                                 <form onSubmit={handleSubmit} noValidate>
-                                    <div className="form-group mb-3">
+                                    <div className="form-group">
                                         <label htmlFor="fname">First Name</label>
                                         <input
                                             type="text"
-                                            className="form-control form-control-sm"
+                                            className="input-field"
                                             id="fname"
                                             name="fname"
                                             placeholder="First Name"
                                             value={formValues.fname}
                                             onChange={handleChange}
                                         />
-                                        <p className="text-danger small">{formErrors.fname}</p>
+                                        <p className="error-message">{formErrors.fname}</p>
                                     </div>
 
-                                    <div className="form-group mb-3">
+                                    <div className="form-group">
                                         <label htmlFor="lname">Last Name</label>
                                         <input
                                             type="text"
-                                            className="form-control form-control-sm"
+                                            className="input-field"
                                             id="lname"
                                             name="lname"
                                             placeholder="Last Name"
                                             value={formValues.lname}
                                             onChange={handleChange}
                                         />
-                                        <p className="text-danger small">{formErrors.lname}</p>
+                                        <p className="error-message">{formErrors.lname}</p>
                                     </div>
 
-                                    <div className="form-group mb-3">
+                                    <div className="form-group">
                                         <label htmlFor="email">Email</label>
                                         <input
                                             type="email"
-                                            className="form-control form-control-sm"
+                                            className="input-field"
                                             id="email"
                                             name="email"
                                             placeholder="Email"
                                             value={formValues.email}
                                             onChange={handleChange}
                                         />
-                                        <p className="text-danger small">{formErrors.email}</p>
+                                        <p className="error-message">{formErrors.email}</p>
                                     </div>
 
-                                    <div className="form-group mb-3">
+                                    <div className="form-group">
                                         <label htmlFor="password">Password</label>
                                         <input
                                             type="password"
-                                            className="form-control form-control-sm"
+                                            className="input-field"
                                             id="password"
                                             name="password"
                                             placeholder="Password"
                                             value={formValues.password}
                                             onChange={handleChange}
                                         />
-                                        <p className="text-danger small">{formErrors.password}</p>
+                                        <p className="error-message">{formErrors.password}</p>
                                     </div>
 
                                     <div className="form-group">
                                         <label htmlFor="cnfpassword">Confirm Password</label>
                                         <input
                                             type="password"
-                                            className="form-control form-control-sm"
+                                            className="input-field"
                                             id="cnfpassword"
                                             name="cnfpassword"
                                             placeholder="Re-enter Password"
                                             value={formValues.cnfpassword}
                                             onChange={handleChange}
                                         />
-                                        <p className="text-danger small">{formErrors.cnfpassword}</p>
+                                        <p className="error-message">{formErrors.cnfpassword}</p>
                                     </div>
 
                                     <button
                                         type="submit"
-                                        className="btn w-100 btn-sm mb-3"
-                                        style={{ backgroundColor: '#2F2A99', color: 'white' }}
+                                        className="submit-btn"
                                     >
                                         Sign Up
                                     </button>
 
-                                    <div className="text-center">
-                                        <Link to="/" className="text-primary small">Already a user? Login here</Link>
+                                    <div className="form-links">
+                                        <Link to="/" className="link-text">Already a user? Login here</Link>
                                     </div>
                                 </form>
                             </div>
