@@ -1,0 +1,86 @@
+/* Author: Jainil Sevalia(jn498899@dal.ca) || Banner Id: B00925445 */
+
+*{margin:0; padding: 0};
+
+
+body{
+    font-family: "Poppins", sans-serif ;
+}
+
+:root{
+    --black: rgba(0,0,0,1);
+    --bunting: rgba(12, 28,70,1); 
+    --bunting-2: rgba(6,29,73,1);
+
+    --font-size-m: 25px;
+    --font-size-s: 14px;
+    --font-size-ss: 13px;
+    --font-size-l: 16px;
+
+    --font-family-poppins: "Poppins";
+}
+
+.card-trip-me{
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    border-radius: 12px;
+    padding: 15px !important;
+}
+
+.card-trip-me:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.container_trip {
+    padding: 2px 16px;
+    margin: 16px 4px;
+}
+
+.card-trip__details{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card-trip__title{
+    letter-spacing: 0;
+    line-height: normal;
+    margin-top :-lpx;
+    min-height: 24px;
+
+    color: var(--bunting);
+    font-family: var(--font-family-poppins);
+    font-size: var(--font-size-1);
+    font-weight: 700;
+    font-style: normal;
+    align-items: left;
+}
+
+.card-trip__date{
+    letter-spacing: 0;
+    justify-content: flex-end;
+    line-height: normal;
+    min-height: 21 px;
+
+    color: var(--black);
+    font-family: var(--font-family-poppins);
+    font-size: var(--font-size-s);
+    font-weight: 500;
+    font-style: normal;
+    align-items: left;
+}
+
+.card-trip__description{
+    letter-spacing: O;
+    line-height: normal;
+    margin-right: 2px;
+    /* white-space: nowrap;
+    text-overflow: ellipsis; */
+
+    color: var(--black);
+    font-family: var(--font-family-poppins);
+    font-size: var(--font-size-ss);
+    font-weight: 400;
+    font-style: normal;
+    align-items: left;
+}

@@ -1,0 +1,117 @@
+/* Author: Dhrupa Patel(dh409430@dal.ca) || Banner Id: B00912610 */
+
+:root {
+	--black: rgba(0, 0, 0, 1);
+	--bunting: rgba(12, 28, 70, 1);
+	--bunting-2: rgba(6, 29, 73, 1);
+
+	--font-size-m: 25px;
+	--font-size-s: 14px;
+	--font-size-ss: 13px;
+	--font-size-l: 16px;
+
+	--font-family-poppins: 'Poppins';
+}
+
+.profile {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100vh;
+	background-color: rgba(0, 0, 0, 0.2);
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.profile-inner {
+	position: relative;
+	padding: 32px;
+	max-width: 640px;
+	width: 100%;
+	background-color: #fff;
+	border-radius: 12px;
+}
+
+.avatar-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.avatar-container img {
+	width: 100px;
+	height: 100px;
+	border-radius: 50%;
+	cursor: pointer;
+}
+
+.avatar-container input[type='file'] {
+	display: none;
+}
+
+.popup-inner .close-btn {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	cursor: pointer;
+}
+
+.popup-form {
+	display: flex;
+	flex-direction: column;
+}
+
+.popup-form label {
+	margin-bottom: 5px;
+}
+
+.popup-form input {
+	padding: 5px;
+	margin-bottom: 10px;
+	border-radius: 3px;
+	border: 1px solid #ccc;
+}
+
+.popup-form button {
+	background-color: #007bff;
+	color: #fff;
+	border: none;
+	padding: 5px 10px;
+	border-radius: 3px;
+	cursor: pointer;
+}
+
+.profile-button-close {
+	display: flex;
+	width: 100%;
+	justify-content: space-between;
+}
+
+.edit-profile-title {
+	letter-spacing: 0;
+	line-height: normal;
+	margin-top: -lpx;
+	min-height: 24px;
+
+	color: var(--bunting);
+	font-size: var(--font-size-m);
+	font-weight: 700;
+	font-style: normal;
+	align-items: left;
+}
+
+.profile-input-list {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+.profile-save-button {
+	margin-top: 24px;
+}
+
+.popup .error{
+	margin:  10px 10px 15px 24px;
+  }

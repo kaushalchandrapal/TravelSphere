@@ -1,0 +1,108 @@
+/* Author: Jay Ramani(jy948858@dal.ca) || Banner Id : B00911903 */
+
+:root {
+    --black: rgba(0, 0, 0, 1);
+    --bunting: rgba(12, 28, 70, 1);
+    --bunting-2: rgba(6, 29, 73, 1);
+
+    --font-size-m: 25px;
+    --font-size-s: 14px;
+    --font-size-ss: 13px;
+    --font-size-l: 16px;
+
+    --font-family-poppins: "Poppins";
+}
+
+
+.see-plan-popup-inner {
+    padding: 16px 32px 16px 32px;
+    border-radius: 12px;
+    top: 40px;
+    width:30vw;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    background: #f5f7f9;
+}
+
+h2{
+    color: black;
+    font-size: 20px;
+    font-weight: 300;
+}
+
+h2 span{
+    font-weight: 500;
+}
+
+.see-plan-destination{
+    margin-top: 15px;
+    font-size: 30px;
+    font-weight: 600;
+    text-align: center;
+}
+.plan-dates{
+    display: flex;
+    flex-direction: row;
+    gap:12px;
+    margin-top: 10px;
+}
+
+.plan-expenses {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.plan-dates .calender{
+    display: flex;
+    align-items: center;
+}
+
+.plan-expenses .dollar {
+    display: flex;
+    align-items: center;    
+}
+
+.plan-expenses .dollar svg{
+    height: 18px;
+    width: 18px;
+}
+
+.plan-details {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.plan-details .info{
+    margin-top: 5px;
+}
+
+@media (max-width:1135px) {
+    .see-plan-popup-inner{
+        width: 40%;
+    }
+}
+@media (max-width:940px) {
+    .see-plan-popup-inner {
+        width: 50%;
+    }
+}
+@media (max-width:750px) {
+    .see-plan-popup-inner {
+        width: 60%;
+    }
+}
+@media (max-width:600px) {
+    .see-plan-popup-inner {
+        width: 70%;
+    }
+}
+@media (max-width:450px) {
+    .see-plan-popup-inner {
+        width: 80%;
+    }
+}

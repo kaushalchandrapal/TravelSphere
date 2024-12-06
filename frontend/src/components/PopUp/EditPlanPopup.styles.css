@@ -1,0 +1,187 @@
+/* Author: Jay Ramani(jy948858@dal.ca) || Banner Id : B00911903 */
+
+:root {
+    --black: rgba(0, 0, 0, 1);
+    --bunting: rgba(12, 28, 70, 1);
+    --bunting-2: rgba(6, 29, 73, 1);
+
+    --font-size-m: 25px;
+    --font-size-s: 14px;
+    --font-size-ss: 13px;
+    --font-size-l: 16px;
+
+    --font-family-poppins: "Poppins";
+}
+
+.popup {
+    /* position: fixed; */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+}
+
+.edit-plan-popup-inner {
+    padding: 16px 32px 16px 32px;
+    background-color: #fff;
+    border-radius: 12px;
+    top:40px;
+    width: 40vw;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.avatar-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.avatar-container img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.avatar-container input[type="file"] {
+    display: none;
+}
+
+
+.edit-plan-popup-inner .close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+
+.popup-form {
+    display: flex;
+    flex-direction: column;
+}
+
+hr {
+    margin: 10px auto;
+    width: 100%;
+    border-top: 1px solid #6D757A;
+}
+
+.popup-form label {
+    margin-bottom: 5px;
+}
+
+.popup-form input {
+    padding: 5px;
+    margin-bottom: 10px;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+}
+
+.popup-form button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.popup-button-close {
+    width: 30px;
+}
+
+.popup-title{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.popup-button-close svg{
+    height: 30px;
+    width: 30px;
+    top:16px;
+}
+
+
+/* CSS */
+.popup-update-button {
+    box-sizing: border-box;
+    color: #fff;
+    cursor: pointer;
+    font-family: Montserrat, sans-serif;
+    font-size: .9em;
+    margin: 5px;
+    padding: 10px 15px;
+    text-align: center;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+}
+
+.card-trip-title__popup {
+    letter-spacing: 0;
+    line-height: normal;
+    margin-top: -lpx;
+    min-height: 24px;
+    /* margin-bottom: 10px; */
+    color: var(--bunting);
+    font-size: var(--font-size-m);
+    font-weight: 700;
+    font-style: normal;
+    align-items: left;
+    text-align: center;
+}
+
+.popup-input-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.popup-update-button{
+        box-sizing: border-box;
+        font-size: .9em;
+        margin: 5px;
+        padding: 10px 15px;
+        text-align: center;
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+}
+
+@media (max-width: 850px){
+    .name-in-plan{
+        display: flex;
+        flex-direction: column;
+        width:100%;
+    }
+    .edit-plan-popup-inner{
+        margin-top: 75px;
+    }
+}
+
+@media (max-width: 650px) {
+    .edit-plan-popup-inner{
+    width: 60%;
+}
+}
+
+@media (max-width: 550px) {
+    .edit-plan-popup-inner {
+        width: 70%;
+    }
+}
+
+@media (max-width: 450px) {
+    .edit-plan-popup-inner {
+        width: 80%;
+        padding: 16px;
+    }
+}

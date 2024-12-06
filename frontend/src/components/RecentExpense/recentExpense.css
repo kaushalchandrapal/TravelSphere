@@ -1,0 +1,25 @@
+/* Author: Jainil Sevalia(jn498899@dal.ca) || Banner Id: B00925445 */
+
+.recent_expense_div-data {
+	margin: 10px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	cursor: pointer;
+}
+.border_div {
+	margin-top: 10px;
+	border-bottom: 0.5px ridge grey;
+}
+.trip_name_span {
+	font-weight: 500;
+}
+.trip_time_span {
+	font-size: 14px;
+	font-weight: lighter;
+	font-style: italic;
+	color: grey;
+}
+.trip_expense_span {
+	color: rgb(196, 10, 10);
+}

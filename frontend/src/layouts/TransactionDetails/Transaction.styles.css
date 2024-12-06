@@ -1,0 +1,133 @@
+/* Author: Jainil Sevalia(jn498899@dal.ca) || Banner Id: B00925445 */
+
+*{margin:0; padding: 0};
+
+
+body{
+    font-family: "Poppins", sans-serif ;
+}
+
+:root{
+    --black: rgba(0,0,0,1);
+    --bunting: rgba(12, 28,70,1); 
+    --bunting-2: rgba(6,29,73,1);
+    --gray: #7C8A97;
+
+    --font-size-m: 25px;
+    --font-size-s: 14px;
+    --font-size-ss: 13px;
+    --font-size-l: 16px;
+
+    --font-family-poppins: "Poppins";
+}
+
+.transaction-details{
+    border-radius: 8px;
+    background-color: #ffffff;
+    cursor: pointer;
+    padding:  5px 10px !important;
+}
+
+.transaction-details:hover {
+    background-color: rgba(0,125,255,0.06);
+}
+
+.container_transaction {
+    padding: 2px 16px;
+}
+
+.transaction-details__row{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.transaction-details__col{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    /* margin-top: 35px; */
+}
+
+.transaction-details__value{
+    letter-spacing: 0;
+    line-height: normal;
+    margin-top :-lpx;
+    min-height: 24px;
+
+    color: var(--bunting);
+    font-family: var(--font-family-poppins);
+    font-size: var(--font-size-s);
+    font-weight: 700;
+    font-style: normal;
+    align-items: left;
+}
+
+.transaction-details:hover .transaction-details__value {
+    color: rgb(0,125,255);
+}
+
+.transaction-details:hover .transaction-details-icon__edit svg{
+    color: rgb(0,125,255);
+    opacity: 1;
+}
+
+.transaction-details:hover .transaction-details-icon__delete svg{
+    color: red;
+    opacity: 1;
+}
+.transaction-details-col__name{
+    letter-spacing: 0;
+    justify-content: flex-end;
+    line-height: normal;
+    min-height: 21 px;
+
+    color: var(--black);
+    font-family: var(--font-family-poppins);
+    font-size: var(--font-size-s);
+    font-weight: 500;
+    font-style: normal;
+    align-items: left;
+}
+.transaction-details-col__id{
+    letter-spacing: 0;
+    justify-content: flex-end;
+    line-height: normal;
+    min-height: 21 px;
+
+    color: var(--gray);
+    font-family: var(--font-family-poppins);
+    font-size: var(--font-size-ss);
+    font-weight: 500;
+    font-style: normal;
+    align-items: left;
+}
+
+.transaction-details-icon__edit svg{
+    height: 24px;
+    width: 24px;
+    opacity: 0;
+}
+
+.transaction-details-icon__edit:hover svg{
+    fill: rgb(0,125,255);
+}
+
+.transaction-details-icon__delete svg{
+    height: 24px;
+    width: 24px;
+    margin-left:15px ;
+    opacity: 0;
+}
+
+.transaction-details-icon__delete:hover svg{
+    fill: red;
+}
+
+.transaction-details__icon{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

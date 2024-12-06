@@ -1,0 +1,80 @@
+/*Author: Maitri Savla(mt588638@dal.ca) || Banner Id : B00899569*/
+
+.body1 {
+    background: rgb(94, 94, 160);
+  }
+  
+    .container {
+      display: flex !important;
+      flex-direction: column;
+      justify-content: center;
+      align-items: right;
+      height: 100vh;
+      max-width: 600px;
+      margin: auto;
+    }
+    .container_form {
+      width: 70%;
+      border: 1px solid #dfdfdf;
+      padding: 10px;
+      border-radius: 10px;
+      background: #fcfcfd;
+    }
+    pre {
+      width: 70%;
+      color: #fff;
+      font-size: larger;
+    }
+    
+    .field{
+      display: inline-block;
+      text-align: right;
+      width: 100px;
+      margin-right: 5px;
+      font-size: large;
+    }
+    
+    .password_input, .fname_input, .lname_input, .email_input, .password_input , .password_input{
+      padding: 5px 10px;
+    }
+    
+    h1{
+      align-items: center;
+      color:#f8f5f5;
+      size: 200px;
+    }
+    .btn-login{
+      background: #0563b4 !important;
+      width: 100px;
+      align-items: center;
+      color: #fff;
+      height: 30px;
+      width: 120px;
+      font-size: large;
+      border-radius: 5px;
+    }
+    .forgotpass, .exstuser{
+      color: red;
+      text-align: center;
+    }
+    
+    .container_lable {
+    padding: 10px;
+    align-items: center;
+    }
+    
+    .btn{
+      text-align: center;
+    }
+    
+    h2{
+      text-align: center;
+    }
+ 
+      h3 {
+        color: #dfdfdf;
+      }
+  
+      
+    
+  

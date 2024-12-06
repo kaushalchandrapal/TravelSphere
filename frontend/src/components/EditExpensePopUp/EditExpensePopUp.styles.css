@@ -1,0 +1,184 @@
+/* Author: Jainil Sevalia(jn498899@dal.ca) || Banner Id: B00925445 */
+
+:root{
+    --black: rgba(0,0,0,1);
+    --bunting: rgba(12, 28,70,1); 
+    --bunting-2: rgba(6,29,73,1);
+
+    --font-size-m: 25px;
+    --font-size-s: 14px;
+    --font-size-ss: 13px;
+    --font-size-l: 16px;
+
+    --font-family-poppins: "Poppins";
+}
+
+.popup {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100vh;
+	background-color: rgba(0, 0, 0, 0.2);
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.add-expense-popup-inner {
+	
+	background-color: #fff;
+	border-radius: 12px;
+	padding: 16px 32px 16px 32px;
+	width: 20vw;
+	margin: auto;
+	display:flex;
+	flex-direction: column;
+
+}
+
+.popup-title{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.popup-inner .close-btn{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+
+.popup-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.popup-form label {
+    margin-bottom: 5px;
+}
+
+.popup-form input {
+    padding: 5px;
+    margin-bottom: 10px;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+}
+
+.popup-form button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.popup-button-close{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+
+.card-trip-title__popup{
+    letter-spacing: 0;
+    line-height: normal;
+    margin-top :-lpx;
+    min-height: 24px;
+
+    color: var(--bunting);
+    font-size: var(--font-size-m);
+    font-weight: 700;
+    font-style: normal;
+    align-items: left;
+}
+
+.popup-input-list{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.popup-save-button {
+	box-sizing: border-box;
+    color: #fff;
+    cursor: pointer;
+    font-family: Montserrat, sans-serif;
+    font-size: .9em;
+    margin: 5px;
+    
+    text-align: center;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+}
+hr{
+	margin: 10px auto;
+	width:100%;
+	border-top: 1px solid #6d757A;
+}
+
+@media (max-width: 1220px){
+    /* .budget-and-date{
+        display: flex;
+        flex-direction: column;
+        width:100%;
+    } */
+    .add-expense-popup-inner{
+		width: 25vw;
+    }
+}
+@media (max-width: 1060px){
+    /* .budget-and-date{
+        display: flex;
+        flex-direction: column;
+        width:100%;
+    } */
+    .add-expense-popup-inner{
+		width: 35vw;
+    }
+}
+
+@media (max-width: 900px){
+    /* .budget-and-date{
+        display: flex;
+        flex-direction: column;
+        width:100%;
+    } */
+    .add-expense-popup-inner{
+		width: 40vw;
+    }
+}
+
+
+@media (max-width: 750px) {
+	.budget-and-date{
+        display: flex;
+        flex-direction: column;
+        width:100%;
+	 }
+     .add-expense-popup-inner{
+    width: 45vw;
+}
+}
+
+@media (max-width: 600px) {
+    .add-expense-popup-inner{
+        width: 50vw;
+    }
+}
+
+@media (max-width: 450px) {
+	
+    .add-expense-popup-inner{
+        width: 55vw;
+    }
+}
+
+@media (max-width: 450px) {
+    .add-expense-popup-inner{
+        width: 60vw;
+        
+    }
+}

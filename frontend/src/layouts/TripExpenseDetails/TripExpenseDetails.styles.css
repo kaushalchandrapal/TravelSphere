@@ -1,0 +1,66 @@
+/* Author: Jainil Sevalia(jn498899@dal.ca) || Banner Id: B00925445 */
+
+*{margin:0; padding: 0};
+
+
+body{
+    font-family: "Poppins", sans-serif ;
+}
+
+:root{
+    --black: rgba(0,0,0,1);
+    --bunting: rgba(12, 28,70,1); 
+    --bunting-2: rgba(6,29,73,1);
+
+    --font-size-m: 25px;
+    --font-size-s: 14px;
+    --font-size-ss: 13px;
+    --font-size-l: 16px;
+
+    --font-family-poppins: "Poppins";
+}
+
+.trip-expense-details{
+    border-radius: 0px 12px 12px 12px;
+    background-color: #f5f5f5;
+    padding: 15px !important;
+}
+
+.container_trip {
+    padding: 2px 16px;
+}
+
+.trip-expense-details__numbers{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 35px;
+}
+
+.trip-expense-details__initialBudget{
+    letter-spacing: 0;
+    line-height: normal;
+    margin-top :-lpx;
+    min-height: 24px;
+
+    color: var(--bunting);
+    font-family: var(--font-family-poppins);
+    font-size: var(--font-size-s);
+    font-weight: 700;
+    font-style: normal;
+    align-items: left;
+}
+
+.trip-expense-details__description{
+    letter-spacing: 0;
+    justify-content: flex-end;
+    line-height: normal;
+    min-height: 21 px;
+
+    color: var(--black);
+    font-family: var(--font-family-poppins);
+    font-size: var(--font-size-s);
+    font-weight: 500;
+    font-style: normal;
+    align-items: left;
+}
