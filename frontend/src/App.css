@@ -1,238 +1,39 @@
 .App {
-    text-align: center;
-  }
-  
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
   .App-logo {
-    height: 40vmin;
-    pointer-events: none;
+    animation: App-logo-spin infinite 20s linear;
   }
-  
-  @media (prefers-reduced-motion: no-preference) {
-    .App-logo {
-      animation: App-logo-spin infinite 20s linear;
-    }
-  }
-  
-  .App-header {
-    background-color: #282c34;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: calc(10px + 2vmin);
-    color: white;
-  }
-  
-  .App-link {
-    color: #61dafb;
-  }
-  
-  @keyframes App-logo-spin {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
-    }
-  }
-  
+}
 
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
 
+.App-link {
+  color: #61dafb;
+}
 
-  .feed_container {
-    display: grid;
-    grid-template-columns: 7% 1fr 20%;
-    overflow: hidden;
-    background-color: #f5f5f7;
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
   }
-  
-  .feed_container-live_update_div {
-    height: 100%;
-    overflow: hidden;
+  to {
+    transform: rotate(360deg);
   }
-  .feed_container-post_div {
-    height: 100vh;
-    width: auto;
-    overflow: scroll;
-    row-gap: 20px;
-    padding-inline: 12px;
-    padding-block: 20px;
-    display: grid;
-    grid-template-columns: 600px;
-    justify-content: center;
-    overflow-x: hidden;
-  }
-  .feed_container-post_div::-webkit-scrollbar {
-    display: none;
-  }
-  
-  .live_update_div_in_home {
-    height: 100vh;
-    align-items: center;
-    overflow: scroll;
-    padding-block: 12px;
-    box-shadow: 1px 2px 6px (55, 84, 170) 0.16;
-    background: white;
-  }
-  .live_update_div_in_home:hover {
-    box-shadow: rgba(55, 84, 170, 0.5) 0 5px 20px;
-  }
-  .live_update_div_in_home::-webkit-scrollbar {
-    display: none;
-  }
-  
-  .live_update_div {
-    display: flex;
-    justify-content: center;
-  }
-  
-  .live_update_and_user_name {
-    display: flex;
-    align-items: center;
-    border-radius: 20px;
-    max-width: fit-content;
-  }
-  .userName_in_live_update {
-    font-family: 'Poppins', sans-serif;
-    font-size: 10px;
-    font-weight: bold;
-    color: rgba(12, 28, 70, 1);
-  }
-  .userName_in_live_update_outer_div {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .recent_expense_in_feed {
-    height: 100px;
-    width: 100px;
-  }
-  .feed_container-latest_trip_div {
-    height: max-content;
-    width: auto;
-    background-color: rgb(255, 255, 255);
-    margin-right: 20px;
-    margin-top: 20px;
-    border-radius: 15px;
-    padding: 10px;
-  }
-  .feed_container-latest_trip_div-heading {
-    font-size: 20px;
-    font-weight: bolder;
-    padding: 0 10px 10px 10px;
-  }
-  .feed_container-latest_trip_div-button {
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
-    position: relative;
-  }
-  
-  @media only screen and (min-width: 3300px) and (max-width: 53300px) {
-    .feed_container-post_div {
-      grid-template-columns: 1fr 1fr 1fr 1fr;
-    }
-    .live_update_div .live_update_pic {
-      height: 110px;
-      width: 120px;
-    }
-  }
-  @media only screen and (min-width: 1700px) and (max-width: 3300px) {
-    .feed_container-post_div {
-      grid-template-columns: 1fr 1fr 1fr;
-    }
-    .live_update_div .live_update_pic {
-      height: 70px;
-      width: 70px;
-    }
-  }
-  @media only screen and (max-width: 1700px) {
-    .live_update_and_user_name {
-      flex-direction: column;
-    }
-    .userName_in_live_update {
-      margin-bottom: 15px;
-    }
-  }
-  @media only screen and (min-width: 1200px) and (max-width: 1340px) {
-    .feed_container {
-      grid-template-columns: 15% 1fr;
-    }
-  }
-  @media only screen and (max-width: 1200px) {
-    .feed_container-latest_trip_div {
-      display: none;
-    }
-  
-    .feed_container {
-      grid-template-columns: 15% 1fr;
-    }
-  }
-  @media only screen and (max-width: 1000px) {
-    .live_update_and_user_name {
-      display: flex;
-      align-items: baseline;
-  
-      border-radius: 20px;
-    }
-    .feed_container-post_div {
-      grid-template-columns: 500px;
-    }
-  
-    .live_update_div_in_home {
-      overflow-x: hidden;
-    }
-  
-    .live_update_and_user_name {
-      box-shadow: rgba(255, 255, 255, 0.5) 0 5px 20px;
-    }
-  
-    .feed_container-live_update_div {
-      overflow-x: hidden;
-    }
-  }
-  @media only screen and (max-width: 960px) {
-    .feed_container {
-      grid-template-columns: 15% 1fr;
-    }
-  }
-  @media only screen and (max-width: 940px) {
-    .feed_container-post_div {
-      grid-template-columns: 400px;
-    }
-  }
-  @media only screen and (max-width: 856px) {
-    .feed_container {
-      display: grid;
-      grid-template-columns: 16% 1fr;
-      overflow: hidden;
-      background-color: #f5f5f5;
-    }
-  }
-  @media only screen and (max-width: 704px) {
-    .live_update_div .live_update_pic {
-      height: 60px;
-      width: 60px;
-    }
-  }
-  
-  @media only screen and (max-width: 573px) {
-    .live_update_div .live_update_pic {
-      height: 50px;
-      width: 50px;
-      margin: 10px 10px 10px 10px;
-    }
-  }
-  @media only screen and (max-width: 494px) {
-    .feed_container-post_div {
-      grid-template-columns: 1fr;
-    }
-  }
-  @media only screen and (max-width: 403px) {
-    .feed_container {
-      grid-template-columns: 20% 1fr;
-    }
-  }
-  
+}
+

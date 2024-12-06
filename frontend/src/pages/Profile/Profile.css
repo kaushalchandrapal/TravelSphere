@@ -1,165 +1,209 @@
+.profile_pic_and_userName {
+	display: flex;
+	justify-content: left;
+	align-items: center;
+	margin-top: 50px;
+	margin-left: auto;
+	margin-right: auto;
+	width: 90%;
+}
 .profile_page_div {
-  padding: 20px;
+	background-color: black;
+}
+.userName_in_profile_page {
+	margin-left: 5%;
+	margin-right: auto;
+	color: rgba(12, 28, 70, 1);
+}
+.profile_pic_in_profile_page {
+	height: 200px;
+	width: 200px;
+	margin-left: 30px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .profile_container {
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.profile_pic_and_userName {
-  display: flex;
-  align-items: flex-start;
-  gap: 30px;
-  margin-bottom: 40px;
-  position: relative;
-}
-
-.profile-image {
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
-  object-fit: cover;
-}
-
-.userName_in_profile_page {
-  flex-grow: 1;
+	background-color: #fff;
+	width: 100%;
+	height: fit-content;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 .userName {
-  margin: 0 0 15px 0;
-  font-size: 24px;
+	display: flex;
+	justify-content: baseline;
+	margin-bottom: 10px;
+	font-family: 'Poppins', sans-serif;
+	color: rgba(12, 28, 70, 1);
 }
-
-.location_img_and_location,
-.instagram_img_and_userName {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 10px;
+.location_img_and_location {
+	display: flex;
+	margin-top: 20px;
 }
+.location_image {
+	margin-top: 0%;
+	height: 15px;
+	width: 15px;
+	align-self: center;
+	fill: gray;
+}
+.location_image:hover {
+	fill: red;
+}
+.location {
+	margin-bottom: 0%;
+	color: grey;
+	margin-left: 15px;
+	height: 20px;
+	font-size: medium;
+	font-family: 'Poppins', sans-serif;
+	color: rgba(12, 28, 70, 1);
 
-.location_image,
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
 .instagram_image {
-  width: 20px;
-  height: 20px;
+	margin-top: 0%;
+	height: 15px;
+	width: 15px;
+	align-self: center;
 }
+.instagram_img_and_userName {
+	display: flex;
+	margin-top: 10px;
+}
+.insta_userName {
+	margin-bottom: 0%;
 
+	font-size: medium;
+	margin-left: 15px;
+	height: 20px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-family: 'Poppins', sans-serif;
+}
 .bio {
-  margin-top: 15px;
+	margin-bottom: 0%;
+	color: grey;
+	font-size: large;
+	margin-top: 10px;
+	height: 20px;
+	display: flex;
+	font-family: 'Poppins', sans-serif;
+	color: rgba(12, 28, 70, 1);
 }
-
-.edit_profile_and_setting_btn_div {
-  display: flex;
-  gap: 10px;
+.bio_text {
+	font-size: 15px;
+	font-family: 'Poppins', sans-serif;
 }
-
-.settingsModal {
-  position: absolute;
-  top: 100%;
-  right: 0;
-  background: white;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-  border-radius: 8px;
-  padding: 10px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  z-index: 100;
-}
-
 .live_updates_div {
-  display: flex;
-  overflow-x: auto;
-  gap: 15px;
-  padding: 20px 0;
+	height: 100px;
+	width: 90%;
+	margin-top: 15px;
+	margin-left: auto;
+	margin-right: auto;
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	overflow: scroll;
+	overflow-y: hidden;
 }
-
-.live-update-item {
-  flex: 0 0 auto;
+.live_updates_div::-webkit-scrollbar {
+	display: none;
 }
-
-.live-update-image {
-  width: 100px;
-  height: 100px;
-  border-radius: 8px;
-  object-fit: cover;
-}
-
 .user_posts_div {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 20px;
-  padding: 20px 0;
+	margin-top: 15px;
+	width: 90%;
+	margin-left: auto;
+	margin-right: auto;
+	height: fit-content;
+	margin-bottom: 50px;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr;
+	row-gap: 20px;
+}
+.profile_edit_button_in_profile_page Button {
+	font-size: 10px;
+	padding: 4px 6px;
 }
 
-.post-card {
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  overflow: hidden;
+@media only screen and (max-width: 935px) {
+	.user_posts_div {
+		grid-template-columns: 1fr;
+	}
+	.profile_pic.large_profile_pic {
+		height: 150px;
+		width: 150px;
+	}
+	.profile_edit_button_in_profile_page .dynamic-button {
+		margin-left: 0 px;
+		height: 40px;
+		width: 140px;
+	}
 }
 
-.post-header {
-  padding: 15px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+@media only screen and (min-width: 935px) and (max-width: 1200px) {
+	.profile_pic.large_profile_pic {
+		height: 150px;
+		width: 150px;
+	}
 }
-
-.post-username {
-  font-weight: 600;
+@media only screen and (min-width: 935px) and (max-width: 1400px) {
+	.user_posts_div {
+		grid-template-columns: 1fr 1fr;
+	}
+	.profile_pic.large_profile_pic {
+		height: 150px;
+		width: 150px;
+	}
 }
-
-.post-location {
-  color: #666;
+@media only screen and (min-width: 1400px) and (max-width: 1800px) {
+	.user_posts_div {
+		grid-template-columns: 1fr 1fr 1fr;
+	}
 }
-
-.post-image {
-  width: 100%;
-  height: 300px;
-  object-fit: cover;
+.live_updates_div .live_update_pic {
+	margin-right: 20px;
 }
-
-.post-description {
-  padding: 15px;
-  line-height: 1.4;
+.edit_profile_and_setting_btn_div {
+	display: flex;
+	gap: 20px;
+	justify-content: center;
+	align-items: center;
+	margin-top: 30px;
 }
-
-/* Modal styles */
-.modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0,0,0,0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
+.setting_img_in_profile {
+	fill: gray;
 }
-
-.modal-content {
-  background: white;
-  padding: 30px;
-  border-radius: 8px;
-  width: 100%;
-  max-width: 500px;
+.setting_img_in_profile:hover {
+	fill: black;
+	cursor: pointer;
 }
+.profile_edit_button_in_profile_page {
+	display: flex;
+	flex-direction: row;
 
-.modal-content h2 {
-  margin-bottom: 20px;
+	align-self: flex-start;
 }
-
-.modal-content form {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-
-.modal-buttons {
-  display: flex;
-  justify-content: flex-end;
-  gap: 10px;
-  margin-top: 20px;
+@media only screen and (max-width: 762px) {
+	.profile_pic_and_userName {
+		display: flex;
+		flex-direction: column;
+		margin-top: 0;
+	}
+	.userName_in_profile_page {
+		margin-left: 0%;
+		margin-bottom: 10px;
+	}
+	.profile_pic_in_profile_page {
+		margin-left: 0;
+	}
+	.edit_profile_and_setting_btn_div {
+		margin-top: 0;
+	}
 }

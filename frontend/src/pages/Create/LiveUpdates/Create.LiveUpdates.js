@@ -1,7 +1,8 @@
+
+
 import React, { useEffect, useState } from 'react';
 import { InputField } from '../../../components';
 import { Button } from '../../../components';
-import { Navbar } from "../../../components";
 import './CreateLiveUpdates.css';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -12,7 +13,7 @@ const CreateLiveUpdates = () => {
 	const initialValues = {
 		userId: 123,
 		// userId: props.userId,
-		userName: 'Manav',
+		userName: 'Shani',
 		// userName: props.userName,
 		liveUpdate: '',
 		// liveUpdate: props.liveUpdate,
@@ -49,7 +50,7 @@ const CreateLiveUpdates = () => {
 			console.log('liveupdate create api called');
 			axios
 				.post(
-					'http://localhost:2020/liveUpdate/create',
+					'http://localhost:5001/liveUpdate/create',
 					{
 						userId: formValues.userId,
 						userName: formValues.userName,
@@ -97,8 +98,6 @@ const CreateLiveUpdates = () => {
 	}, [isSubmit, navigate]);
 
 	return (
-        <>
-        <Navbar />
 		<div className="create_live_update_div_outer_div">
 			<div className="Live-update-title">Create Live Updates</div>
 
@@ -151,7 +150,6 @@ const CreateLiveUpdates = () => {
 				</div>
 			</form>
 		</div>
-        </>
 	);
 };
 

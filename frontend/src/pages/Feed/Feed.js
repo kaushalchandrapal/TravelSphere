@@ -1,105 +1,99 @@
-/** @format */
 
-import React, { useEffect, useState } from "react";
-import { Button, Navbar } from "../../components";
-import Path from "../../constants/Path";
-import { Link } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import axios from "axios";
-import "./Feed.css"; // Updated to match correct case
+
+import React, { useEffect, useState } from 'react';
+import { LiveUpdateImage } from '../../components';
+import { RecentExpense } from '../../components';
+import { Button } from '../../components';
+import { Post } from '../../layouts';
+import './feed.css';
+import Path from '../../constants/Path';
+import { Link } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import axios from 'axios';
+import { createPost } from '../../redux/postReducer';
+import { createLiveUpdate } from '../../redux/liveUpdate.reducer';
 
 const Feed = () => {
-  const dispatch = useDispatch();
-  const [recentTrip, setRecentTrip] = useState([]);
-  const [posts, setPosts] = useState([]);
-  const [liveUpdates, setLiveUpdates] = useState([]);
+	const dispatch = useDispatch();
+	const [recentTrip, setRecentTrip] = useState([]);
+	useEffect(() => {
+		// fetch all posts from database
+		axios
+			.get(`http://localhost:5001/post/view`)
+			.then(function (response) {
+				dispatch(createPost(response.data));
+			});
+		// detch all live updates from database
+		axios
+			.get(`http://localhost:5001/liveupdate/view`)
+			.then(function (response) {
+				dispatch(createLiveUpdate(response.data));
+			})
+			.catch((err) => {
+				console.log(err);
+			});
+		axios.get('http://localhost:5001/trip').then((response) => {
+			setRecentTrip(response.data.trips.reverse().slice(0, 5));
+		});
+	}, [dispatch]);
+	const post = useSelector((state) => state.post);
+	const liveUpdates = useSelector((state) => state.liveUpdate);
 
-  useEffect(() => {
-    // fetch all posts from database
-    axios
-      .get(`http://localhost:2020/post/view`)
-      .then(function (response) {
-        setPosts(response.data);
-      })
-      .catch((err) => {
-        console.log("Error fetching posts:", err);
-      });
+	return (
+		<div className="feed_container">
+			<div className="live_update_div_in_home">
+				{liveUpdates.liveUpdatesData.map((liveUpdates, i) => {
+					return (
+						<>
+							<LiveUpdateImage
+								type="horizontal"
+								live_update_url={liveUpdates.image}
+							/>
+							<div className="userName_in_live_update_outer_div">
+								<span className="userName_in_live_update">
+									{liveUpdates.userName}
+								</span>
+							</div>
+						</>
+					);
+				})}
+			</div>
+			<div className="feed_container-post_div">
+				{post.postData.map((post, i) => (
+					<Post
+						// post={post}
+						type="feed_post"
+						userName={post.userName}
+						location={post.location}
+						image={post.image}
+						description={post.description}
+					/>
+				))}
+			</div>
+			<div className="feed_container-latest_trip_div">
+				<div className="feed_container-latest_trip_div-heading">
+					Recent trips
+				</div>
+				{recentTrip.map((trip, i) => (
+					<RecentExpense
+						className="recent_expense_in_feed"
+						tripName={trip.tripName}
+						tripTime={trip.tripDate}
+						tripExpense={`$${trip.totalExpense}`}
+					></RecentExpense>
+				))}
 
-    // fetch all live updates from database
-    axios
-      .get(`http://localhost:2020/liveupdate/view`)
-      .then(function (response) {
-        setLiveUpdates(response.data);
-      })
-      .catch((err) => {
-        console.log("Error fetching live updates:", err);
-      });
-
-    // fetch recent trips
-    axios
-      .get("http://localhost:2020/trip")
-      .then((response) => {
-        setRecentTrip(response.data.trips.reverse().slice(0, 5));
-      })
-      .catch((err) => {
-        console.log("Error fetching trips:", err);
-      });
-  }, []);
-
-  return (
-    <>
-      <Navbar />
-      <div className="feed_container">
-        <div className="live_update_div_in_home">
-          {liveUpdates.map((liveUpdate, i) => (
-            <div key={i} className="live-update-item">
-              <img
-                src={liveUpdate.image}
-                alt="Live update"
-                className="live-update-image"
-              />
-              <div className="userName_in_live_update_outer_div">
-                <span className="userName_in_live_update">
-                  {liveUpdate.userName}
-                </span>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        <div className="feed_container-post_div">
-          {posts.map((post, i) => (
-            <div key={i} className="post-item">
-              <div className="post-header">
-                <span className="post-username">{post.userName}</span>
-                <span className="post-location">{post.location}</span>
-              </div>
-              <img src={post.image} alt="Post content" className="post-image" />
-              <p className="post-description">{post.description}</p>
-            </div>
-          ))}
-        </div>
-
-        <div className="feed_container-latest_trip_div">
-          <div className="feed_container-latest_trip_div-heading">
-            Recent trips
-          </div>
-          {recentTrip.map((trip, i) => (
-            <div key={i} className="recent-trip-item">
-              <span className="trip-name">{trip.tripName}</span>
-              <span className="trip-date">{trip.tripDate}</span>
-              <span className="trip-expense">${trip.totalExpense}</span>
-            </div>
-          ))}
-          <div className="feed_container-latest_trip_div-button">
-            <Link to={Path.MANAGE_EXPENSES}>
-              <Button variant="blue" name="SEE ALL EXPENSES" />
-            </Link>
-          </div>
-        </div>
-      </div>
-    </>
-  );
+				<div className="feed_container-latest_trip_div-button">
+					<Link to={Path.MANAGE_EXPENSES}>
+						<Button
+							variant="blue"
+							name="SEE ALL EXPENSES"
+						/>
+					</Link>
+				</div>
+			</div>
+		</div>
+	);
 };
 
 export default Feed;

@@ -1,3 +1,4 @@
+/* Author: Jay Ramani(jy948858@dal.ca) || Banner Id : B00911903 */
 
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap");
 
@@ -10,7 +11,7 @@
 
 .start {
 	display: flex;
-	gap: 50px;
+	gap:50px;
 	align-items: center;
 }
 
@@ -51,7 +52,7 @@ li {
 	padding-top: 50px;
 }
 
-.form-container>form {
+.form-container > form {
 	width: 90%;
 	border: 1px solid #dfdfdf;
 	padding: 20px;
@@ -71,7 +72,7 @@ li {
 	font-weight: 600;
 }
 
-a {
+ a {
 	text-decoration: none;
 	display: flex;
 }
@@ -107,21 +108,19 @@ li {
 	text-decoration: none;
 	margin-right: 10px;
 }
-
 .navbar {
 	width: 100%;
 	align-items: center;
 	background: rgb(21, 128, 235);
-	background: linear-gradient(to bottom right, #141E30, #243B55);
+	background: linear-gradient(to bottom right, #141E30 , #243B55 );
 	/* background: linear-gradient(166deg, rgb(12, 26, 213) 20%, rgb(32, 8, 168) 53%); */
 	padding-top: 5px;
 	padding-bottom: 5px;
-	max-width: 1800px;
+	/* max-width: 1800px; */
 	margin: 0 auto;
 	padding-left: 15px;
 	padding-right: 15px;
 }
-
 .navlinks {
 	display: flex;
 	justify-content: center;
@@ -154,7 +153,7 @@ a .nav-button img {
 	padding-top: 50px;
 }
 
-.form-container>form {
+.form-container > form {
 	width: 90%;
 	border: 1px solid #dfdfdf;
 	padding: 20px;
@@ -235,7 +234,7 @@ pre {
 	color: #F5F5F5;
 }
 
-.search svg {
+.search svg{
 	color: white;
 }
 
@@ -251,7 +250,7 @@ pre {
 	font-size: 14px;
 }
 
-.plan-dropdown {
+.plan-dropdown{
 	background-color: none;
 	border-radius: 4px;
 	text-align: center;
@@ -260,10 +259,9 @@ pre {
 	position: relative;
 }
 
-.dropdown .plus span,
-.dropdown .plus svg {
+.dropdown .plus span, .dropdown .plus svg {
 	color: #1031BC;
-	font-size: 16px;
+	font-size: 16px ;
 }
 
 
@@ -278,7 +276,7 @@ pre {
 	margin-left: 10px;
 }
 
-.profile-pic-navbar {
+.profile-pic-navbar{
 	background-color: inherit;
 	border: none;
 }
@@ -290,7 +288,7 @@ pre {
 	gap: 8px;
 }
 
-.active-tab .nav-button {
+.active-tab .nav-button{
 	color: black;
 }
 
@@ -306,7 +304,7 @@ pre {
 	z-index: 10;
 }
 
-.menu a {
+.menu a{
 	color: black;
 }
 
@@ -324,7 +322,7 @@ pre {
 }
 
 .menu .menu-item:hover {
-	background-color: #CAD5E2;
+	background-color:#CAD5E2 ;
 }
 
 .search-close {
@@ -338,7 +336,6 @@ pre {
 		left: 35px;
 		font-size: 22px;
 	}
-
 	.navlinks {
 		display: none;
 	}
@@ -347,12 +344,10 @@ pre {
 		background-color: transparent;
 		padding-inline: 8px;
 	}
-
 	.search input {
 		display: none;
 		color: #F5F5F5;
 	}
-
 	.search svg {
 		width: 24px;
 		height: 24px;
@@ -380,7 +375,7 @@ pre {
 	.navlinks-mobile .active-tab {
 		padding: 8px 12px;
 		display: inline-block;
-		background-color: #CAD5E2;
+		background-color:#CAD5E2;
 		color: black;
 	}
 
@@ -403,7 +398,7 @@ pre {
 	}
 
 	ul .navlinks {
-		margin-bottom: 0px !important;
+		margin-bottom: 0px !important ;
 	}
 
 	.start {
@@ -453,7 +448,7 @@ pre {
 		font-weight: 400;
 	}
 
-	.menu .menu-item {
+	.menu .menu-item{
 		padding: 8px 12px;
 		color: black;
 		/* text-align: center; */
@@ -461,7 +456,7 @@ pre {
 		justify-content: center;
 	}
 
-	a {
+	a{
 		color: black;
 		text-decoration: none;
 	}
@@ -492,7 +487,7 @@ pre {
 	.search-active .search svg {
 		display: none;
 	}
-
+	
 	.search-close {
 		color: white;
 		width: 24px;

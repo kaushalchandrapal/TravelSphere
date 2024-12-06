@@ -1,5 +1,7 @@
+
+
 const Path = {
-  HOME: "/home",
+  HOME: "/",
   FEED: "/feed",
   MANAGE_EXPENSES: "/manageExpense",
   MESSAGE: "/message",
@@ -7,11 +9,12 @@ const Path = {
   CREATE_LIVE_UPDATES: "/createLiveUpdates",
   CREATE_PLAN: "/createPlan",
   PROFILE_PAGE: "/profile",
-  ALL_PLAN: "/plan",
-  MY_PLAN: "/myplan",
-  LOGIN: "/",
+  LOGIN: "/login",
   REGISTER: "/register",
   FORGOTPASS: "/forgotpass",
+  ALL_PLAN: "/plan",
+  MY_PLAN: "/myplan",
+  CANCEL_PAY: "/cancel-Pay/:id",
   EMAIL_UPDATE: "/emailUpdate",
   PASSWORD_UPDATE: "/passwordUpdate"
 };

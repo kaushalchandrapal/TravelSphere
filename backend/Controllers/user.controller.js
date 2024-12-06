@@ -1,4 +1,6 @@
-const User = require('../Models/user.model');
+
+
+const User = require('../Models/Registerandlogin.model');
 
 const viewUser = (req, res) => {
 	const getUser = async () => {
@@ -30,7 +32,7 @@ const createUser = (req, res) => {
 	const profilePic = req.body.profilePic;
 	const socialMediaHandle = req.body.socialMediaHandle;
 	const userBio = req.body.userBio;
-	const userEmail = req.body.userEmail;
+	const emailid = req.body.emailid;
 
 	const saveUser = async () => {
 		const user = new User({
@@ -39,7 +41,7 @@ const createUser = (req, res) => {
 			profilePic,
 			socialMediaHandle,
 			userBio,
-			userEmail,
+			emailid,
 		});
 		const result = await user.save();
 		res.json(result);

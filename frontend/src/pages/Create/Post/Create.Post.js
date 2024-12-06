@@ -1,7 +1,8 @@
+
+
 import React, { useEffect, useState } from 'react';
 import { InputField } from '../../../components';
 import { Button } from '../../../components';
-import { Navbar } from "../../../components";
 import TextArea from '../../../components/TextArea/TextArea';
 import './CreatePost.css';
 import { useNavigate } from 'react-router-dom';
@@ -14,7 +15,7 @@ function CreatePost() {
 		// Static data given, because user data did not came from authentication module!!
 		userId: 123,
 		// userId: props.userId,
-		userName: 'Manav',
+		userName: 'Shani',
 		// userName: props.userName,
 		postImage: '',
 		location: '',
@@ -103,7 +104,7 @@ function CreatePost() {
 			) {
 				axios
 					.post(
-						'http://localhost:2020/post/create',
+						'http://localhost:5001/post/create',
 						{
 							userId: formValues.userId,
 							userName: formValues.userName,
@@ -167,8 +168,6 @@ function CreatePost() {
 	}, [isSubmit, navigate]);
 
 	return (
-        <>
-        <Navbar />
 		<div className="create_post_outer_div">
 			<div className="title_for_create_post">Create New Post</div>
 
@@ -236,7 +235,6 @@ function CreatePost() {
 				</div>
 			</form>
 		</div>
-        </>
 	);
 }
 
