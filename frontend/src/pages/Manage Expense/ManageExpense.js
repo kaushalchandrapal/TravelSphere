@@ -14,6 +14,7 @@ import { expenseAdded } from "../../redux/expenseAdded.reducer";
 import { tripAdded } from "../../redux/addTrip.reducers";
 import EditTripPopUp from "../../components/PopUp/EditTripPopUp";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const ManageExpense = (props) => {
   const expenseAddedState = useSelector(
@@ -34,7 +35,14 @@ const ManageExpense = (props) => {
   const [tripInformation, setTripInformation] = useState([]);
   const [transactionInformation, setTransactionInformation] = useState([]);
   const [selectedInformation, setSelectedInformation] = useState();
-  console.log("selectedInformation :>> ", selectedInformation);
+  const [token , setToken] = useState(localStorage?.getItem('token'));
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if(!localStorage.getItem('token')){
+      navigate("/login");
+    }
+  },[])
 
   const dispatch = useDispatch();
 
@@ -91,7 +99,11 @@ const ManageExpense = (props) => {
   useEffect(() => {
     props.setProgress(10);
     try {
-      axios.get("/trip").then((response) => {
+      axios.get("/trip",{
+        headers : {
+          'Authorization' : `Bearer ${token}`
+        }
+      }).then((response) => {
         setTripInformation(response.data.trips.reverse());
         setSelectedTripId(response.data.trips[0]?._id || "");
         dispatch(selectedTripCard(response.data.trips[0]?._id || ""));
@@ -104,7 +116,11 @@ const ManageExpense = (props) => {
   useEffect(() => {
     props.setProgress(10);
     try {
-      axios.get("/trip").then((response) => {
+      axios.get("/trip",{
+        headers : {
+          'Authorization' : `Bearer ${token}`
+        }
+      }).then((response) => {
         setTripInformation(response.data.trips.reverse());
         setSelectedTripId(
           tripEditedState ? tripEditedState : response.data.trips[0]?._id || ""

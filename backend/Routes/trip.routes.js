@@ -12,7 +12,7 @@ const {
 const {decodeToken} = require("../Helpers");
 
 router.post("/add", decodeToken ,addTrip);
-router.get("/", getAllTrip);
+router.get("/",decodeToken, getAllTrip);
 router.patch("/update/:id", updateTrip);
 router.get("/get/:id", getTrip);
 router.delete("/delete/:id", deleteTrip);

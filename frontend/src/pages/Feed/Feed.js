@@ -16,7 +16,7 @@ import { createLiveUpdate } from '../../redux/liveUpdate.reducer';
 const Feed = () => {
 	const dispatch = useDispatch();
 	const [recentTrip, setRecentTrip] = useState([]);
-	const [token , setToken] = useState("");
+	const [token , setToken] = useState(localStorage.getItem("token"));
 	const navigate = useNavigate();
 
 	useEffect(() => {
@@ -44,7 +44,11 @@ const Feed = () => {
 			.catch((err) => {
 				console.log(err);
 			});
-		axios.get('http://localhost:5001/trip').then((response) => {
+		axios.get('http://localhost:5001/trip' , {
+			headers : {
+				'Authorization' : `Bearer ${token}`
+			}
+		}).then((response) => {
 			setRecentTrip(response.data.trips.reverse().slice(0, 5));
 		});
 	}, [dispatch]);

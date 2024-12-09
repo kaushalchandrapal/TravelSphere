@@ -17,7 +17,7 @@ const viewLiveUpdate = (req, res) => {
 
 // get select live update from database
 const viewLiveUpdateById = (req, res) => {
-	const userId = parseInt(req.params.id);
+	const userId = req.params.id;
 
 	const getLiveUpdateById = async () => {
 		const data = await LiveUpdate.find({ userId }).sort({ date: -1 });

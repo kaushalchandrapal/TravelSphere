@@ -54,11 +54,11 @@ const AdminDashboard = () => {
 
   // Line Chart Data
   const lineData = {
-    labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul"],
+    labels: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursdsay", "Friday", "Saturday"],
     datasets: [
       {
         label: "User Registrations",
-        data: [10, 20, 15, 30, 25, 40, 50],
+        data: [2, 5, 7, 3, 8, 4, 5],
         borderColor: "#3e95cd",
         fill: true,
         tension: 0.4,
@@ -66,7 +66,7 @@ const AdminDashboard = () => {
       },
       {
         label: "Posts Created",
-        data: [5, 15, 10, 20, 18, 30, 35],
+        data: [1, 6, 2, 4, 8, 3, 5],
         borderColor: "#8e5ea2",
         fill: true,
         tension: 0.4,

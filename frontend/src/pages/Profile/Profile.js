@@ -16,17 +16,19 @@ import { Button } from "../../components";
 import EditProfilePopup from "../../components/EditProfile/EditProfile";
 
 import "./Profile.css";
+import { toast } from "react-toastify";
 
 const Profile = () => {
   const [isOpen, setIsOpen] = useState();
-  const [formValues, setFormValues] = useState({});
+  const [formValues, setFormValues] = useState(JSON.parse(localStorage.getItem("user")));
   const dispatch = useDispatch();
-  const [token, setToken] = useState("");
-  const [dataProfile, setDataProfile] = useState({});
+  const [token, setToken] = useState(localStorage.getItem("token"));
+  const [dataProfile, setDataProfile] = useState(JSON.parse(localStorage.getItem("user")));
   const navigate = useNavigate();
+  const [user,setUser] = useState({});
 
   useEffect(() => {
-    if (localStorage.getItem("token") && localStorage.getItem("token")) {
+    if (localStorage.getItem("token")) {
       setToken(localStorage.getItem("token"));
       setDataProfile(JSON.parse(localStorage.getItem("user")));
     } else {
@@ -35,26 +37,26 @@ const Profile = () => {
   }, []);
 
   useEffect(() => {
-    console.log("data ---------", dataProfile);
-  }, [dataProfile]);
+    console.log("data ---------", dataProfile , token);
+  }, [dataProfile , token]);
 
   useEffect(() => {
     // fetch all posts of particular users
     // Also code included if I would have got user data from user authentication
     // Therefore added static data of user
     axios
-      .get(`http://localhost:5001/post/view`, {
+      .get(`http://localhost:5001/post/view/${dataProfile._id}`, {
         headers: {
-          Authorization: `Bearer ${token}`,
+          'Authorization': `Bearer ${token}`,
         },
       })
       .then(function (response) {
         dispatch(createPost(response.data));
       });
     axios
-      .get(`http://localhost:5001/liveupdate/view/`, {
+      .get(`http://localhost:5001/liveupdate/view/${dataProfile._id}`, {
         headers: {
-          Authorization: `Bearer ${token}`,
+          'Authorization': `Bearer ${token}`,
         },
       })
       .then(function (response) {
@@ -75,6 +77,36 @@ const Profile = () => {
   const settingButtonClick = () => {
     setIsOpen(!isOpen);
   };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault(); // Prevent default form submission
+    try {
+      console.log(formValues)
+      const response = await axios.post(
+        `http://localhost:5001/user/update/${dataProfile._id}`,
+        formValues,
+        {
+          headers : {
+            'Authorization' : `Bearer ${token}`
+          }
+        }
+      );
+
+      console.log(response.data.user)
+      if (response.status == 200) {
+        toast.success("Profile updated successfully!");
+        console.log(response.data.user)
+        localStorage.setItem("user" , JSON.stringify(response?.data.user));
+        window.location.reload();
+      } else {
+        toast.error("Unexpected response from the server. Please try again.");
+      }
+    } catch (error) {
+      console.error(error);
+      toast.error("There might be some internal error! Please try again later.");
+    }
+  };
+  
 
   return (
     <div className="profile_page_div">
@@ -131,6 +163,7 @@ const Profile = () => {
                 setTrigger={setPopup}
                 formValues={formValues}
                 setFormValues={setFormValues}
+                handleSubmit={handleSubmit}
               ></EditProfilePopup>
               <IconComponent
                 className="setting_img_in_profile"

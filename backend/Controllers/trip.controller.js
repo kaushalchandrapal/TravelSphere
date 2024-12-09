@@ -27,7 +27,8 @@ exports.addTrip = async (req, res) => {
 
 exports.getAllTrip = async (req, res) => {
   try {
-    const trips = await Trip.find();
+    const user = req.user;
+    const trips = await Trip.find({userId : user._id});
     const expenseMap = {};
     const tripIds = trips.map((trip) => trip._id);
     const expenses = await Expense.find({ tripId: { $in: tripIds } });
