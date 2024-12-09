@@ -27,6 +27,11 @@ function Plan() {
 	const [formErrors, setFormErrors] = useState(initialValues);
 	const [isSubmit, setIsSubmit] = useState(false);
 	const [errorCheck, setErrorCheck] = useState(false);
+	const [token,setToken] = useState('');
+
+	useEffect(() => {
+		setToken(localStorage.getItem('token'));
+	},[])
 	const navigate = useNavigate();
 
 	const handleChange = (e) => {
@@ -73,7 +78,10 @@ function Plan() {
 						estimatedExpenses: formValues.estimatedExpenses,
 						travelDescription: formValues.travelDescription,
 					},
-					headers: { 'Content-Type': 'application/json' },
+					headers: { 
+						'Content-Type': 'application/json',
+						'Authorization' : `Bearer ${token}`
+					},
 				})
 					.then((response) => {
 						if (response.data.status === 'ok') {

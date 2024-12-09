@@ -12,7 +12,6 @@ app.use(cors());
 const registerUser = async (req, resp) => {
   try {
     const {emailid} = req.body;
-    console.log(req.file);
     const image =
 		'http://localhost:5001/Images/' + req.file.filename;
 
@@ -37,23 +36,23 @@ const loginUser = async (req, resp) => {
         .findOne({ emailid: req.body.emailid, pass: req.body.pass })
         .select("-pass");
       if (users) {
-        // Generate JWT token
         const token = jwt.sign(
-          { id: users._id, emailid: users.emailid, role: users.role },
+          { userId : users._id , user:users, emailid: users.emailid, role: users.role },
           JWT_SECRET,
-          { expiresIn: "1h" }
+          { expiresIn: "24h" }
         );
 
-        // Send user data and token in the response
         resp.send({
           message: "Login successful",
           token: token,
           user: users,
         });
       } else {
+        console.log("invalid credentials")
         resp.status(401).send("Invalid email or password");
       }
     } else {
+      console.log("Email and password are required");
       resp.status(400).send("Email and password are required");
     }
   } catch (error) {

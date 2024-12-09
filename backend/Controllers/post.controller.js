@@ -5,9 +5,16 @@ const Post = require('../Models/post.model');
 // view all posts from database
 const viewPost = (req, res) => {
 	const getPost = async () => {
-		const data = await Post.find().sort({ date: -1 });
-		res.json(data);
-	};
+        try {
+            const data = await Post.find()
+                .sort({ date: -1 })
+                .populate('userId', 'profilePic emailid');
+            res.json(data);
+        } catch (err) {
+            console.error(err);
+            res.status(500).json({ error: 'An error occurred while fetching posts.' });
+        }
+    };
 
 	getPost().catch((err) => {
 		console.log(err);
@@ -16,10 +23,11 @@ const viewPost = (req, res) => {
 
 // view posts of particular user
 const viewPostByUserId = (req, res) => {
-	const userId = parseInt(req.params.id);
+	const user = req.user;
+	const userId = user._id;
 
 	const getPost = async () => {
-		const data = await Post.find({ userId : req.params.id });
+		const data = await Post.find({ userId });
 		res.json(data);
 	};
 
@@ -80,24 +88,25 @@ const updatePostByPostId = (req, res) => {
 
 // create new post and save to database
 const createPost = (req, res) => {
-	const userId = req.body.userId;
+
 	const userName = req.body.userName;
 	const image =
 		'http://localhost:5001/Images/' + req.file.filename;
-	const location = req.body.location;
+	const location = req.body.location;	
 	const description = req.body.description;
-
+	const user = req.user;
+	console.log('user=================' , user._id )
 	const savePost = async () => {
 		const post = new Post({
-			userId,
-			userName,
+			userId:user?._id,
+			userName:user.userName,
 			location,
 			image,
 			description,
 			date: Date.now(),
 		});
 		await post.save();
-		const data = await Post.find({ userId }).sort({ date: -1 });
+		const data = await Post.find({ userId : user._id }).sort({ date: -1 });
 		res.json(data);
 	};
 	savePost().catch((err) => {

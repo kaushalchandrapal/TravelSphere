@@ -10,16 +10,24 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const CreateLiveUpdates = () => {
-	const initialValues = {
-		userId: 123,
-		// userId: props.userId,
-		userName: 'Shani',
-		// userName: props.userName,
-		liveUpdate: '',
-		// liveUpdate: props.liveUpdate,
-	};
+	
 
-	const [formValues, setFormValues] = useState(initialValues);
+	const [formValues, setFormValues] = useState();
+	const [userData , setUserData] = useState({});
+	const [token , setToken] = useState("");
+
+
+	useEffect(() => {
+		setUserData(JSON.parse(localStorage.getItem('user')))
+		setToken(localStorage.getItem('token'));
+	},[])
+
+	useEffect(() => {
+		setFormValues({
+			userName : userData.userName,
+		})
+	},[]);
+
 	const [isSubmit, setIsSubmit] = useState(false);
 	const [image, setImage] = useState(null);
 	const [errorMessage, setErrorMessage] = useState('please select an Image!!');
@@ -47,18 +55,16 @@ const CreateLiveUpdates = () => {
 		e.preventDefault();
 		// check there are no errors and create live update
 		if (errorMessage === '' && image !== undefined) {
-			console.log('liveupdate create api called');
 			axios
 				.post(
 					'http://localhost:5001/liveUpdate/create',
 					{
-						userId: formValues.userId,
-						userName: formValues.userName,
 						liveUpdate: formValues.liveUpdate,
 					},
 					{
 						headers: {
 							'Content-Type': 'multipart/form-data',
+							'Authorization' : `Bearer ${token}`
 						},
 					}
 				)

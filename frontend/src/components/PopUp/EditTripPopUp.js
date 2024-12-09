@@ -40,7 +40,7 @@ const EditTripPopUp = (props) => {
 
   useEffect(() => {
     try {
-      axios.get(`/trip/get/${props.selectedTripCard}`).then((response) => {
+      axios.get(`/trip/get/${props?.selectedTripCard?._id}`).then((response) => {
         setFormValues(response.data.trip);
       });
     } catch (err) {

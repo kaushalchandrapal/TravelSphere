@@ -31,8 +31,12 @@ const viewLiveUpdateById = (req, res) => {
 
 // create new live update
 const createLiveUpdate = (req, res) => {
-	const userId = req.body.userId;
-	const userName = req.body.userName;
+	const user = req.user;
+	if(!user){
+		return res.status(401).json({error:"User not Found!"})
+	}
+	const userId = user._id;
+	const userName = user.userName;
 	const image =
 		'http://localhost:5001/Images/' + req.file.filename;
 

@@ -1,15 +1,15 @@
-
-
 const Trip = require("../Models/trip.model");
 const Expense = require("../Models/expense.model");
 
 exports.addTrip = async (req, res) => {
   try {
-    const trip = await Trip.create({
-      // TODO: add user from middleware
-      // userId : req.user.userId,
+    const user = req.user;
+    if (!user) {
+      return res.status(401).json({ error: "User not found" });
+    }
 
-      userId: req.body.userId,
+    const trip = await Trip.create({
+      userId: user._id,
       tripName: req.body.tripName,
       tripDescription: req.body.tripDescription,
       tripDate: req.body.tripDate,
@@ -20,39 +20,34 @@ exports.addTrip = async (req, res) => {
       .status(201)
       .json({ success: true, message: "Trip Created Successfully", trip });
   } catch (err) {
+    console.log(err);
     res.status(500).json({ success: false, message: err });
   }
 };
 
 exports.getAllTrip = async (req, res) => {
-  // TODO: Need user Id for get
-  const user_id = "64147ef19c2f3ba112246a4f";
   try {
-    if (user_id == null) {
-      res.status(404).json({ success: false, message: "Trips not found ):" });
-    } else {
-      const trips = await Trip.find({ userId: user_id });
-      const expenseMap = {};
-      const tripIds = trips.map((trip) => trip._id);
-      const expenses = await Expense.find({ tripId: { $in: tripIds } });
-      expenses.forEach((expense) => {
-        if (!expenseMap[expense.tripId]) {
-          expenseMap[expense.tripId] = [];
-        }
-        expenseMap[expense.tripId].push(expense);
-      });
-      trips.forEach((trip) => {
-        const tripExpenses = expenseMap[trip._id] || [];
-        const total = tripExpenses.reduce((total, expense) => {
-          return total + expense.transactionAmount;
-        }, 0);
-        trip.totalExpense = total;
-      });
-      await Promise.all(trips.map((trip) => trip.save()));
-      res
-        .status(200)
-        .json({ success: true, message: "All trips found!!", trips });
-    }
+    const trips = await Trip.find();
+    const expenseMap = {};
+    const tripIds = trips.map((trip) => trip._id);
+    const expenses = await Expense.find({ tripId: { $in: tripIds } });
+    expenses.forEach((expense) => {
+      if (!expenseMap[expense.tripId]) {
+        expenseMap[expense.tripId] = [];
+      }
+      expenseMap[expense.tripId].push(expense);
+    });
+    trips.forEach((trip) => {
+      const tripExpenses = expenseMap[trip._id] || [];
+      const total = tripExpenses.reduce((total, expense) => {
+        return total + expense.transactionAmount;
+      }, 0);
+      trip.totalExpense = total;
+    });
+    await Promise.all(trips.map((trip) => trip.save()));
+    res
+      .status(200)
+      .json({ success: true, message: "All trips found!!", trips });
   } catch (err) {
     res.status(500).json({ success: false, message: err.message });
   }

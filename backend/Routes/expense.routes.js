@@ -10,8 +10,9 @@ const {
   deleteExpense,
   payExpense,
 } = require("../Controllers/expense.controller");
+const {decodeToken} = require("../Helpers");
 
-router.post("/add", addExpense);
+router.post("/add", decodeToken ,addExpense);
 router.get("/:tripId", getAllExpenses);
 router.patch("/update/:id", updateExpense);
 router.delete("/delete/:id", deleteExpense);

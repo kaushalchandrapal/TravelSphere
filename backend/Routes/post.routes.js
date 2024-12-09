@@ -4,6 +4,7 @@ const express = require('express');
 const postController = require('../Controllers/post.controller');
 const router = express.Router();
 const multer = require('multer');
+const { decodeToken } = require('../Helpers');
 
 const storage = multer.diskStorage({
 	destination: function (req, file, cb) {
@@ -18,9 +19,9 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 router.get('/view', postController.viewPost);
-router.get('/view/:id', postController.viewPostByUserId);
+router.get('/view/:id', decodeToken , postController.viewPostByUserId);
 router.get('/viewById/:id', postController.viewPostByPostId);
-router.post('/create', upload.single('postImage'), postController.createPost);
+router.post('/create', decodeToken ,upload.single('postImage')  ,postController.createPost);
 router.post('/delete/:id', postController.deletePostByPostId);
 router.put('/update/:id', postController.updatePostByPostId);
 

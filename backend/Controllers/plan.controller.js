@@ -45,6 +45,10 @@ const createPlan = (req, res) => {
   const destination = req.body.destination;
   const estimatedExpenses = req.body.estimatedExpenses;
   const travelDescription = req.body.travelDescription;
+  const user = req.user;
+  if (!user) {
+    return res.status(401).json({ error: "User not found" });
+  }
 
   const savePlan = async () => {
     const plan = new Plan({
@@ -56,6 +60,7 @@ const createPlan = (req, res) => {
       destination,
       estimatedExpenses,
       travelDescription,
+      userId: user._id
     });
 
     const result = await plan.save();

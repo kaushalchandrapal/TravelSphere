@@ -10,6 +10,7 @@ import axios from "../../utils/axios";
 import { expenseAdded } from "../../redux/expenseAdded.reducer";
 import { toast } from "react-toastify";
 import { IoCloseCircleOutline } from "react-icons/io5";
+import { useNavigate } from "react-router-dom";
 
 const AddExpensePopUp = (props) => {
   const selectedTripId = useSelector((store) => store.sample);
@@ -20,8 +21,19 @@ const AddExpensePopUp = (props) => {
     transactionName: "",
     transactionAmount: "",
   };
+  const [token, setToken] = useState('');
+  const navigate = useNavigate();
   const [formValues, setFormValues] = useState(initialValues);
   // const [formErrors, setFormErrors] = useState();
+
+  useEffect(() => {
+    const localToken = localStorage?.getItem('token');
+    if(!localToken) {
+      toast.error("Please Login");
+      return navigate("/login");
+    }
+    setToken(localToken)
+  },[])
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -36,6 +48,10 @@ const AddExpensePopUp = (props) => {
         tripId: selectedTripId.tripIdSelected,
         transactionName: formValues.transactionName,
         transactionAmount: formValues.transactionAmount,
+      },{
+        headers : {
+          'Authorization' : `Bearer ${token}`
+        }
       })
       .then((response) => {
         if (response.data.success) {
@@ -152,6 +168,10 @@ const AddExpensePopUp = (props) => {
         tripId: selectedTripId.tripIdSelected,
         transactionName: formValues.transactionName,
         transactionAmount: formValues.transactionAmount,
+      },{
+        headers: {
+          'Authorization' : `Bearer ${token}`
+        }
       })
       .then((response) => {
         if (response.data.success) {

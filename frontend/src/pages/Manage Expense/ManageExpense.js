@@ -63,9 +63,10 @@ const ManageExpense = (props) => {
 
   useEffect(() => {
     try {
-      axios.get(`/trip/get/${selectedTripId}`).then((response) => {
+      
+      {selectedTripId && axios.get(`/trip/get/${selectedTripId}`).then((response) => {
         setSelectedInformation(response.data.trip);
-      });
+      });}
     } catch (err) {
       toast.error("Something went wrong!! Try again!!", {
         position: "top-right",
@@ -124,11 +125,11 @@ const ManageExpense = (props) => {
   useEffect(() => {
     try {
       props.setProgress(10);
-      axios.get(`/expense/${selectedTripId}`).then((response) => {
+     {selectedTripId &&  axios.get(`/expense/${selectedTripId}`).then((response) => {
         setTransactionInformation(response.data.expense);
         dispatch(expenseAdded(""));
         props.setProgress(100);
-      });
+      });}
     } catch (err) {
       console.log(err);
     }

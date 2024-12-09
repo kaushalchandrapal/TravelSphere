@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   CreateLiveUpdates,
   Post,
@@ -11,7 +11,7 @@ import {
   AllPlan,
   CancelPay,
 } from "./pages/index";
-import { Route, Routes, useLocation } from "react-router-dom";
+import { Route, Routes, useLocation, Navigate } from "react-router-dom";
 import { Navbar } from "./components";
 import Path from "./constants/Path";
 import AccessibilityPanel from "./components/AccessibilityPanel/AccessibilityPanel";
@@ -30,6 +30,16 @@ import Posts from "./components/Admin/Posts";
 import Plans from "./components/Admin/Plans";
 import LiveUpdates from "./components/Admin/LiveUpdates";
 
+// Helper function to check authentication
+const isAuthenticated = () => {
+  return !!localStorage.getItem("token");
+};
+
+// Private Route Component
+const PrivateRoute = ({ children }) => {
+  return isAuthenticated() ? children : <Navigate to={Path.LOGIN} />;
+};
+
 function App() {
   const [progress, setProgress] = useState(0);
   const location = useLocation();
@@ -46,9 +56,7 @@ function App() {
     <div>
       <ToastContainer />
 
-      {/* Conditional Navbar Rendering */}
-      {(!isAdminRoute && !hideNavbarRoutes.includes(pathname)) && <Navbar />}
-
+        {!hideNavbarRoutes?.includes(location.pathname) && <Navbar />}
       <Routes>
         {/* Public Routes */}
         <Route path={Path.LOGIN} element={<Login />} />
@@ -63,6 +71,103 @@ function App() {
           <Route path="plans" element={<Plans />} />
           <Route path="liveupdates" element={<LiveUpdates />} />
         </Route>
+        {/* Private Routes */}
+        <Route
+          path={Path.HOME}
+          element={
+            <PrivateRoute>
+              <Feed />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path={Path.MANAGE_EXPENSES}
+          element={
+            <PrivateRoute>
+              <ManageExpense setProgress={setProgress} />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path={Path.MESSAGE}
+          element={
+            <PrivateRoute>
+              <Message />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path={Path.CREATE_POST}
+          element={
+            <PrivateRoute>
+              <Post />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path={Path.CREATE_LIVE_UPDATES}
+          element={
+            <PrivateRoute>
+              <CreateLiveUpdates />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path={Path.CREATE_PLAN}
+          element={
+            <PrivateRoute>
+              <Plan />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path={Path.PROFILE_PAGE}
+          element={
+            <PrivateRoute>
+              <Profile />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path={Path.EMAIL_UPDATE}
+          element={
+            <PrivateRoute>
+              <ChangeEmailPage />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path={Path.PASSWORD_UPDATE}
+          element={
+            <PrivateRoute>
+              <ChangePassword />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path={Path.ALL_PLAN}
+          element={
+            <PrivateRoute>
+              <AllPlan setProgress={setProgress} />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path={Path.MY_PLAN}
+          element={
+            <PrivateRoute>
+              <MyPlan />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path={Path.CANCEL_PAY}
+          element={
+            <PrivateRoute>
+              <CancelPay />
+            </PrivateRoute>
+          }
+        />
       </Routes>
 
       <LoadingBar
@@ -72,31 +177,7 @@ function App() {
         progress={progress}
         onLoaderFinished={() => setProgress(0)}
       />
-
-      <Routes>
-        {/* User-Specific Routes */}
-        <Route path={Path.HOME} element={<Feed />} />
-        <Route
-          path={Path.MANAGE_EXPENSES}
-          element={<ManageExpense setProgress={setProgress} />}
-        />
-        <Route path={Path.MESSAGE} element={<Message />} />
-        <Route path={Path.CREATE_POST} element={<Post />} />
-        <Route
-          path={Path.CREATE_LIVE_UPDATES}
-          element={<CreateLiveUpdates />}
-        />
-        <Route path={Path.CREATE_PLAN} element={<Plan />} />
-        <Route path={Path.PROFILE_PAGE} element={<Profile />} />
-        <Route path={Path.EMAIL_UPDATE} element={<ChangeEmailPage />} />
-        <Route path={Path.PASSWORD_UPDATE} element={<ChangePassword />} />
-        <Route
-          path={Path.ALL_PLAN}
-          element={<AllPlan setProgress={setProgress} />}
-        />
-        <Route path={Path.MY_PLAN} element={<MyPlan />} />
-        <Route path={Path.CANCEL_PAY} element={<CancelPay />} />
-      </Routes>
+     
       <AccessibilityPanel />
     </div>
   );

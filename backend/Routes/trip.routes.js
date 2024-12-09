@@ -9,8 +9,9 @@ const {
   getTrip,
   deleteTrip,
 } = require("../Controllers/trip.controller");
+const {decodeToken} = require("../Helpers");
 
-router.post("/add", addTrip);
+router.post("/add", decodeToken ,addTrip);
 router.get("/", getAllTrip);
 router.patch("/update/:id", updateTrip);
 router.get("/get/:id", getTrip);

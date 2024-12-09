@@ -14,7 +14,8 @@ const viewUser = (req, res) => {
 };
 
 const viewUserById = (req, res) => {
-	const userId = parseInt(req.params.id);
+	const user = req.user;
+	const userId = user._id;
 
 	const getUser = async () => {
 		const data = await User.find({ userId });
@@ -26,28 +27,32 @@ const viewUserById = (req, res) => {
 	});
 };
 
-const createUser = (req, res) => {
-	const userId = req.body.userId;
-	const userName = req.body.userName;
-	const profilePic = req.body.profilePic;
-	const socialMediaHandle = req.body.socialMediaHandle;
-	const userBio = req.body.userBio;
-	const emailid = req.body.emailid;
+const createUser = async (req, res) => {
+    try {
+        const { userName, profilePic, socialMediaHandle, userBio, emailid } = req.body;
+        if (!userName || !emailid) {
+            return res.status(400).json({ message: "userName and emailid are required." });
+        }
 
-	const saveUser = async () => {
-		const user = new User({
-			userId,
-			userName,
-			profilePic,
-			socialMediaHandle,
-			userBio,
-			emailid,
-		});
-		const result = await user.save();
-		res.json(result);
-	};
-	saveUser();
+        const user = new User({
+            userName,
+            profilePic,
+            socialMediaHandle,
+            userBio,
+            emailid,
+        });
+
+        const result = await user.save();
+
+        res.status(201).json(result);
+    } catch (error) {
+        console.error("Error creating user:", error);
+        res.status(500).json({ message: "An error occurred while creating the user.", error });
+    }
 };
+
+module.exports = createUser;
+
 
 const getUserBySearch = async (req, res) => {
 	console.log(req.query.q, "search");

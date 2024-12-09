@@ -11,8 +11,6 @@ const storage = multer.diskStorage({
 	filename: function (req, file, cb) {
 		const suffixForImage = Date.now() + Math.round(Math.random() * 1e9) + '-';
 		cb(null, suffixForImage + file.originalname.split(' ').join(''));
-        console.log("filewwww" , file);
-        
 	},
 });
 

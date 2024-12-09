@@ -7,7 +7,7 @@ import { Button } from '../../components';
 import { Post } from '../../layouts';
 import './feed.css';
 import Path from '../../constants/Path';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios';
 import { createPost } from '../../redux/postReducer';
@@ -16,10 +16,22 @@ import { createLiveUpdate } from '../../redux/liveUpdate.reducer';
 const Feed = () => {
 	const dispatch = useDispatch();
 	const [recentTrip, setRecentTrip] = useState([]);
+	const [token , setToken] = useState("");
+	const navigate = useNavigate();
+
+	useEffect(() => {
+		{localStorage.getItem("token") ? setToken(localStorage.getItem("token")) : navigate("/login") }
+	},[])
+
 	useEffect(() => {
 		// fetch all posts from database
 		axios
-			.get(`http://localhost:5001/post/view`)
+			.get(`http://localhost:5001/post/view` , 
+				{
+					headers : {
+						'Authorization' : `Bearer ${token}`
+					}
+				})
 			.then(function (response) {
 				dispatch(createPost(response.data));
 			});
@@ -61,7 +73,7 @@ const Feed = () => {
 			<div className="feed_container-post_div">
 				{post.postData.map((post, i) => (
 					<Post
-						// post={post}
+						userImage = {post?.userId?.profilePic}
 						type="feed_post"
 						userName={post.userName}
 						location={post.location}

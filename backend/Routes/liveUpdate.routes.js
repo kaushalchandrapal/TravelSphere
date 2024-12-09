@@ -4,6 +4,7 @@ const express = require('express');
 const liveUpdateController = require('../Controllers/liveUpdate.controller');
 const router = express.Router();
 const multer = require('multer');
+const {decodeToken} = require("../Helpers");
 
 const storage = multer.diskStorage({
 	destination: function (req, file, cb) {
@@ -17,9 +18,10 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 router.get('/view', liveUpdateController.viewLiveUpdate);
-router.get('/view/:id', liveUpdateController.viewLiveUpdateById);
+router.get('/view/:id', decodeToken ,liveUpdateController.viewLiveUpdateById);
 router.post(
 	'/create',
+	decodeToken,
 	upload.single('liveUpdate'),
 	liveUpdateController.createLiveUpdate
 );

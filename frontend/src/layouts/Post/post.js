@@ -144,7 +144,7 @@ const Post = (props) => {
 						<div className="profile_pic_in_post">
 							<ProfilePic
 								size="small"
-								image_url="/Images/shani.jpg"
+								image_url={props.userImage}
 								// Static data given, because user ID is not coming from authentication module yet!!
 								// image_url={props.ProfilePic}
 							/>

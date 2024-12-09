@@ -42,7 +42,11 @@ const planSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.Mixed,
         required: true,
         trim: true
-    }
+    },
+    userId:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+      },
 });
 
 module.exports = mongoose.model('plan',planSchema);

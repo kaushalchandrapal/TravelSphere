@@ -3,10 +3,10 @@
 const mongoose = require('mongoose');
 
 const liveUpdateSchema = new mongoose.Schema({
-	userId: {
-		type: Number,
-		required: true,
-	},
+	userId:{
+		type: mongoose.Schema.Types.ObjectId,
+		ref: "User",
+	  },
 	userName: {
 		type: String,
 		required: true,

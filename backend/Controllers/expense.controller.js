@@ -7,7 +7,12 @@ const stripe = require("stripe")(process.env.STRIPE_API_KEY);
 exports.addExpense = async (req, res) => {
   try {
     const { tripId, transactionName, transactionAmount } = req.body;
+    const userId = req.user._id;
+    if(!userId){
+      res.status(401).json({error : "User not found!"})
+    }
     const expense = await Expense.create({
+      userId,
       tripId: tripId,
       transactionName: transactionName,
       transactionAmount: transactionAmount,
@@ -114,8 +119,8 @@ exports.payExpense = async (req, res) => {
         },
       ],
       mode: "payment",
-      success_url: `https://tripeasego.netlify.app/manageExpense`,
-      cancel_url: `https://tripeasego.netlify.app/cancel-Pay/${expense._id}`,
+      success_url: `http://localhost:3000/manageExpense`,
+      cancel_url: `http://localhost:3000/cancel-Pay/${expense._id}`,
     });
     res.status(200).json({
       success: true,

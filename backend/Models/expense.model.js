@@ -7,6 +7,10 @@ const exoenseSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "trip",
   },
+  userId:{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+  },
   transactionName: {
     type: String,
     require: true,

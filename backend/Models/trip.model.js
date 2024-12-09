@@ -3,9 +3,10 @@
 const mongoose = require("mongoose");
 
 const tripSchema = mongoose.Schema({
-  userId: {
+  userId:{
     type: mongoose.Schema.Types.ObjectId,
-    ref: "user",
+    ref: "User",
+    required:true
   },
   tripName: {
     type: String,
