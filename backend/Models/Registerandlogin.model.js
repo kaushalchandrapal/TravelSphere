@@ -17,6 +17,11 @@ const userSchema = new mongoose.Schema({
   userBio: {
     type: String,
   },
+  role: {
+    type: String,
+    enum: ["user", "admin"], // Role can only be "user" or "admin"
+    default: "user", // Default role
+  },
 });
 
 module.exports = mongoose.model("User", userSchema);

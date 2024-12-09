@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { Button, InputField } from "..";
 import "./EditExpensePopUp.styles.css";
-import { axios } from "../../utils/axios";
+import axios from "../../utils/axios";
 import { expenseAdded } from "../../redux/expenseAdded.reducer";
 import { toast } from "react-toastify";
 import { IoCloseCircleOutline } from "react-icons/io5";

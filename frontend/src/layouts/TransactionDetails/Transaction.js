@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import IconComponent from "../../components/Icon/Icon";
-import { axios } from "../../utils/axios";
+import axios from "../../utils/axios";
 import "../TransactionDetails/Transaction.styles.css";
 import { expenseAdded } from "../../redux/expenseAdded.reducer";
 import EditExpensePopUp from "../../components/EditExpensePopUp/EditExpensePopUp";

@@ -161,7 +161,6 @@ function RegistrationForm() {
           <span className="first-logo">TRAVEL</span>
           <span className="second-logo">SPHERE</span>
         </div>
-
         <div className="registration-card">
           <div className="registration-row">
             <div className="registration-image">
@@ -176,89 +175,113 @@ function RegistrationForm() {
               <div className="registration-form-content">
                 <h4 className="registration-title">Create your account</h4>
                 <form onSubmit={handleSubmit} noValidate>
-                  <div className="form-group">
-                    <label htmlFor="fname">First Name</label>
-                    <input
-                      type="text"
-                      className="input-field"
-                      id="fname"
-                      name="fname"
-                      placeholder="First Name"
-                      value={formValues.fname}
-                      onChange={handleChange}
-                    />
-                    <p className="error-message">{formErrors.fname}</p>
-                  </div>
+                  {/* <div className="container"> */}
+                    <div className="row">
+                      <div className="col-md-6 col-sm-12">
+                        <div className="form-group">
+                          <label htmlFor="fname">First Name</label>
+                          <input
+                            type="text"
+                            className="input-field"
+                            id="fname"
+                            name="fname"
+                            placeholder="First Name"
+                            value={formValues.fname}
+                            onChange={handleChange}
+                          />
+                          <p className="error-message">{formErrors.fname}</p>
+                        </div>
+                      </div>
 
-                  <div className="form-group">
-                    <label htmlFor="lname">Last Name</label>
-                    <input
-                      type="text"
-                      className="input-field"
-                      id="lname"
-                      name="lname"
-                      placeholder="Last Name"
-                      value={formValues.lname}
-                      onChange={handleChange}
-                    />
-                    <p className="error-message">{formErrors.lname}</p>
-                  </div>
+                      <div className="col-md-6 col-sm-12">
+                        <div className="form-group">
+                          <label htmlFor="lname">Last Name</label>
+                          <input
+                            type="text"
+                            className="input-field"
+                            id="lname"
+                            name="lname"
+                            placeholder="Last Name"
+                            value={formValues.lname}
+                            onChange={handleChange}
+                          />
+                          <p className="error-message">{formErrors.lname}</p>
+                        </div>
+                      </div>
 
-                  <div className="form-group">
-                    <label htmlFor="email">Email</label>
-                    <input
-                      type="email"
-                      className="input-field"
-                      id="email"
-                      name="email"
-                      placeholder="Email"
-                      value={formValues.email}
-                      onChange={handleChange}
-                    />
-                    <p className="error-message">{formErrors.email}</p>
-                  </div>
+                      <div className="col-md-6 col-sm-12">
+                        <div className="form-group">
+                          <label htmlFor="email">Email</label>
+                          <input
+                            type="email"
+                            className="input-field"
+                            id="email"
+                            name="email"
+                            placeholder="Email"
+                            value={formValues.email}
+                            onChange={handleChange}
+                          />
+                          <p className="error-message">{formErrors.email}</p>
+                        </div>      
+                      </div>
+                      <div className="col-md-6 col-sm-12">
+                        <div className="form-group">
+                          <label htmlFor="userName">Username</label>
+                          <input
+                            type="text"
+                            className="input-field"
+                            id="userName"
+                            name="userName"
+                            placeholder="Username"
+                            value={formValues.userName}
+                            onChange={handleChange}
+                          />
+                          <p className="error-message">{formErrors.userName}</p>
+                        </div>
+                      </div>
 
-                  <div className="form-group">
-                    <label htmlFor="password">Password</label>
-                    <input
-                      type="password"
-                      className="input-field"
-                      id="password"
-                      name="password"
-                      placeholder="Password"
-                      value={formValues.password}
-                      onChange={handleChange}
-                    />
-                    <p className="error-message">{formErrors.password}</p>
-                  </div>
+                      <div className="col-md-6 col-sm-12">
+                        
+                        <div className="form-group">
+                          <label htmlFor="password">Password</label>
+                          <input
+                            type="password"
+                            className="input-field"
+                            id="password"
+                            name="password"
+                            placeholder="Password"
+                            value={formValues.password}
+                            onChange={handleChange}
+                          />
+                          <p className="error-message">{formErrors.password}</p>
+                        </div>
+                      </div>
+                      
+                      <div className="col-md-6 col-sm-12">
+                        <div className="form-group">
+                          <label htmlFor="cnfpassword">Confirm Password</label>
+                          <input
+                            type="password"
+                            className="input-field"
+                            id="cnfpassword"
+                            name="cnfpassword"
+                            placeholder="Re-enter Password"
+                            value={formValues.cnfpassword}
+                            onChange={handleChange}
+                          />
+                          <p className="error-message">{formErrors.cnfpassword}</p>
+                        </div>
 
-                  <div className="form-group">
-                    <label htmlFor="cnfpassword">Confirm Password</label>
-                    <input
-                      type="password"
-                      className="input-field"
-                      id="cnfpassword"
-                      name="cnfpassword"
-                      placeholder="Re-enter Password"
-                      value={formValues.cnfpassword}
-                      onChange={handleChange}
-                    />
-                    <p className="error-message">{formErrors.cnfpassword}</p>
-                  </div>
+                      </div>
+                    </div>
+                  {/* </div> */}
+                  
 
-                  <div className="form-group">
-                    <label htmlFor="userName">Username</label>
-                    <input
-                      type="text"
-                      className="input-field"
-                      id="userName"
-                      name="userName"
-                      placeholder="Username"
-                      value={formValues.userName}
-                      onChange={handleChange}
-                    />
-                    <p className="error-message">{formErrors.userName}</p>
-                  </div>
+                  
+
+
+
+                  
 
                   <div className="form-group">
                     <label htmlFor="profilePic">Profile Picture</label>
@@ -272,25 +295,36 @@ function RegistrationForm() {
                       onChange={handleChange}
                     /> */}
 
-                    <InputField
-                      type="file"
-                      name="profilePic"
-                      id="photo"
-                      accept="image/png,image/jpg, image/gif, image/jpeg"
-                      error={formErrors.imageError}
-                      handleChange={onImageChange}
-                      label="Select a photo"
-                    />
+                    <div className="row">
+                      <div className="col-10">
 
-                    {image ? (
-                      <img
-                        className="post-image"
-                        src={image}
-                        id="target"
-                        alt="preview"
-                        name="profilePic"
-                      />
-                    ) : null}
+                        <InputField
+                          type="file"
+                          name="profilePic"
+                          id="photo"
+                          accept="image/png,image/jpg, image/gif, image/jpeg"
+                          error={formErrors.imageError}
+                          handleChange={onImageChange}
+                          label="Select a photo"
+                        />
+                      </div>
+
+                      <div className="col-2">
+
+                        {image ? (
+                          <img
+                            className="post-image-registration mt-3 ml-4"
+                            src={image}
+                            id="target"
+                            alt="preview"
+                            name="profilePic"
+                          />
+                        ) : null}
+                      </div>
+
+
+                    </div>
+
 
                     <p className="error-message">{formErrors.profilePic}</p>
                   </div>

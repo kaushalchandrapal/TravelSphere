@@ -87,7 +87,7 @@ const sendEmail = (req, res) => {
 
     const message = {
       to: toEmail,
-      from: "ramanijay1212@gmail.com",
+      from: "vanechamanav@gmail.com",
       subject: "Request to join the travel plan",
       text: "Hello there. I really liked your plan that you have posted. I would like to join you and have fun. Witing for your response",
       html: "<h3>Hello there. I really liked your plan that you have posted. I would like to join you and have fun. Waiting for your response</h3>",

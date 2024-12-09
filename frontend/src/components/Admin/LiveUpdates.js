@@ -1,99 +1,94 @@
-import React, { useEffect, useState } from "react";
-import { Table, TableBody, TableCell, TableHead, TableRow, Button, TextField, Dialog, DialogActions, DialogContent, DialogTitle } from "@mui/material";
-import { toast } from "react-toastify";
-import { axios } from "../../utils/axios";
+import React, { useEffect, useState } from 'react';
+import axios from '../../utils/axios';
+import {
+  Grid,
+  Card,
+  CardContent,
+  Typography,
+  CardActions,
+  CardMedia,
+  Button,
+  Box,
+} from '@mui/material';
+import { Delete, Person, DateRange } from '@mui/icons-material';
 
 const LiveUpdates = () => {
-  const [updates, setUpdates] = useState([]);
-  const [open, setOpen] = useState(false);
-  const [selectedUpdate, setSelectedUpdate] = useState(null);
+  const [liveUpdates, setLiveUpdates] = useState([]);
 
+  // Fetch live updates on component mount
   useEffect(() => {
-    fetchUpdates();
+    const fetchLiveUpdates = async () => {
+      try {
+        const { data } = await axios.get('/admin/liveupdates');
+        setLiveUpdates(data);
+      } catch (error) {
+        console.error('Error fetching live updates:', error.message);
+      }
+    };
+    fetchLiveUpdates();
   }, []);
 
-  const fetchUpdates = async () => {
-    try {
-      const response = await axios.get("/admin/liveupdates");
-      setUpdates(response.data);
-    } catch (error) {
-      toast.error("Failed to fetch live updates.");
-    }
-  };
-
+  // Handle delete functionality
   const handleDelete = async (id) => {
     try {
       await axios.delete(`/admin/liveupdates/${id}`);
-      toast.success("Live update deleted successfully!");
-      fetchUpdates();
+      setLiveUpdates(liveUpdates.filter((update) => update._id !== id));
     } catch (error) {
-      toast.error("Failed to delete live update.");
-    }
-  };
-
-  const handleEdit = (update) => {
-    setSelectedUpdate(update);
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-    setSelectedUpdate(null);
-  };
-
-  const handleSave = async () => {
-    try {
-      if (selectedUpdate._id) {
-        await axios.put(`/admin/liveupdates/${selectedUpdate._id}`, selectedUpdate);
-        toast.success("Live update updated successfully!");
-      }
-      setOpen(false);
-      fetchUpdates();
-    } catch (error) {
-      toast.error("Failed to save live update.");
+      console.error('Error deleting live update:', error.message);
     }
   };
 
   return (
-    <div>
-      <h2>Manage Live Updates</h2>
-      <Table>
-        <TableHead>
-          <TableRow>
-            <TableCell>Update ID</TableCell>
-            <TableCell>User Name</TableCell>
-            <TableCell>Image</TableCell>
-            <TableCell>Date</TableCell>
-            <TableCell>Actions</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {updates.map((update) => (
-            <TableRow key={update._id}>
-              <TableCell>{update._id}</TableCell>
-              <TableCell>{update.userName || "No User Name"}</TableCell>
-              <TableCell>
-                <img
-                  src={update.image}
-                  alt="Live Update"
-                  style={{ width: "100px", height: "auto" }}
-                />
-              </TableCell>
-              <TableCell>{new Date(update.date).toLocaleString()}</TableCell>
-              <TableCell>
+    <Box sx={{ padding: '20px' }}>
+      <Typography variant="h4" gutterBottom>
+        Live Updates
+      </Typography>
+      <Grid container spacing={3}>
+        {liveUpdates.map((update) => (
+          <Grid item xs={12} sm={6} md={4} key={update._id}>
+            <Card
+              elevation={3}
+              sx={{
+                transition: 'transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out',
+                '&:hover': {
+                  transform: 'scale(1.03)',
+                  boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.2)',
+                },
+              }}
+            >
+              <CardMedia
+                component="img"
+                height="200"
+                image={update.image}
+                alt="Live Update"
+                sx={{ objectFit: 'cover' }}
+              />
+              <CardContent>
+                <Typography variant="h6" gutterBottom>
+                  <Person sx={{ verticalAlign: 'middle', marginRight: '5px' }} />
+                  {update.userName || 'Anonymous'}
+                </Typography>
+                <Typography variant="body2" color="textSecondary">
+                  <DateRange sx={{ verticalAlign: 'middle', marginRight: '5px' }} />
+                  {new Date(update.date).toLocaleDateString()}
+                </Typography>
+              </CardContent>
+              <CardActions>
                 <Button
-                variant="contained"
+                  size="small"
+                  variant="contained"
                   color="error"
+                  startIcon={<Delete />}
                   onClick={() => handleDelete(update._id)}
                 >
                   Delete
                 </Button>
-              </TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </div>
+              </CardActions>
+            </Card>
+          </Grid>
+        ))}
+      </Grid>
+    </Box>
   );
 };
 

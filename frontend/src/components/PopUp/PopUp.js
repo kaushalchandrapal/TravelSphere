@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { Button, InputField } from "..";
 import "../PopUp/PopUp.styles.css";
 import TextArea from "../TextArea/TextArea";
-import { axios } from "../../utils/axios";
+import axios from "../../utils/axios";
 import { useDispatch } from "react-redux";
 import { tripAdded } from "../../redux/addTrip.reducers";
 import { toast } from "react-toastify";

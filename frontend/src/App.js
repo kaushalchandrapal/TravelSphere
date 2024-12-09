@@ -21,21 +21,48 @@ import Forgotpass from "./components/loginModule/forgotpass";
 import LoadingBar from "react-top-loading-bar";
 import ChangeEmailPage from "./components/Settings/UpdateEmailAddress";
 import ChangePassword from "./components/Settings/ChangePassword";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import AdminDashboard from "./pages/Admin/AdminDashboard";
+import AdminLayout from "./layouts/Admin/AdminLayout";
+import Users from "./components/Admin/Users";
+import Posts from "./components/Admin/Posts";
+import Plans from "./components/Admin/Plans";
+import LiveUpdates from "./components/Admin/LiveUpdates";
 
 function App() {
   const [progress, setProgress] = useState(0);
   const location = useLocation();
   const hideNavbarRoutes = [Path.LOGIN, Path.REGISTER, Path.FORGOTPASS];
+  const { pathname } = location;
+
+  // Identify if the current route belongs to the admin panel
+  const isAdminRoute = pathname.includes("/admin");
+
+  console.log(pathname);
+  
 
   return (
     <div>
       <ToastContainer />
+
+      {/* Conditional Navbar Rendering */}
+      {(!isAdminRoute && !hideNavbarRoutes.includes(pathname)) && <Navbar />}
+
       <Routes>
+        {/* Public Routes */}
         <Route path={Path.LOGIN} element={<Login />} />
         <Route path={Path.REGISTER} element={<RegistrationForm />} />
         <Route path={Path.FORGOTPASS} element={<Forgotpass />} />
+
+        {/* Admin Routes */}
+        <Route path="/admin" element={<AdminLayout />}>
+          <Route path="dashboard" element={<AdminDashboard />} />
+          <Route path="users" element={<Users />} />
+          <Route path="posts" element={<Posts />} />
+          <Route path="plans" element={<Plans />} />
+          <Route path="liveupdates" element={<LiveUpdates />} />
+        </Route>
       </Routes>
 
       <LoadingBar
@@ -45,8 +72,9 @@ function App() {
         progress={progress}
         onLoaderFinished={() => setProgress(0)}
       />
-      {!hideNavbarRoutes?.includes(location.pathname) && <Navbar />}
+
       <Routes>
+        {/* User-Specific Routes */}
         <Route path={Path.HOME} element={<Feed />} />
         <Route
           path={Path.MANAGE_EXPENSES}
@@ -60,9 +88,12 @@ function App() {
         />
         <Route path={Path.CREATE_PLAN} element={<Plan />} />
         <Route path={Path.PROFILE_PAGE} element={<Profile />} />
-        <Route path={Path.EMAIL_UPDATE} element={<ChangeEmailPage/>}/>
-        <Route path={Path.PASSWORD_UPDATE} element={<ChangePassword/>}/>
-        <Route path={Path.ALL_PLAN} element={<AllPlan setProgress={setProgress}/>} />
+        <Route path={Path.EMAIL_UPDATE} element={<ChangeEmailPage />} />
+        <Route path={Path.PASSWORD_UPDATE} element={<ChangePassword />} />
+        <Route
+          path={Path.ALL_PLAN}
+          element={<AllPlan setProgress={setProgress} />}
+        />
         <Route path={Path.MY_PLAN} element={<MyPlan />} />
         <Route path={Path.CANCEL_PAY} element={<CancelPay />} />
       </Routes>

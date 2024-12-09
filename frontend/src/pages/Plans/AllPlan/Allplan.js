@@ -25,7 +25,7 @@ const AllPlan = (props) => {
 
 	const items = Array.from(
 		Array(
-			plans.filter((plan) => plan.email === 'ramanijay1212@gmail.com').length
+			plans.filter((plan) => plan.email === 'vanechamanav@gmail.com').length
 		).keys()
 	);
 	const [displayCount, setDisplayCount] = useState(2);
@@ -152,7 +152,7 @@ const AllPlan = (props) => {
 					</div>
 					<div className="left-container-own-plan">
 						{plans
-							.filter((plan) => plan.email === 'ramanijay1212@gmail.com')
+							.filter((plan) => plan.email === 'vanechamanav@gmail.com')
 							.slice(0, displayCount)
 							.map((plan) => (
 								<div className="own-plan-card">
@@ -234,7 +234,7 @@ const AllPlan = (props) => {
 					</div>
 					<div className="plans">
 						{plans
-							.filter((plan) => plan.email !== 'ramanijay1212@gmail.com')
+							.filter((plan) => plan.email !== 'vanechamanav@gmail.com')
 							.map((plan) => (
 								<div className="card">
 									<div className="dateandexpense">

@@ -52,7 +52,12 @@ function Login() {
         localStorage.setItem("token", JSON.stringify(response.data.token));
         localStorage.setItem("user", JSON.stringify(response.data.user));
         toast.success("Login Successful!");
-        nav(Path.HOME);
+
+        if (response.data.user.role.toLowerCase() === 'admin') {
+          nav(Path.ADMIN_LAYOUT);
+        } else {
+          nav(Path.HOME);
+        }
     } catch (error) {
       console.error("Error during login:", error);
   

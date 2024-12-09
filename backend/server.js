@@ -17,6 +17,7 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 //Routes
+const adminRouter = require("./Routes/admin.routes");
 const postRouter = require("./Routes/post.routes");
 const userRouter = require("./Routes/user.routes");
 const liveUpdateRouter = require("./Routes/liveUpdate.routes");
@@ -39,6 +40,7 @@ mongoose
 app.use(express.json());
 
 app.use(morgan("combined"));
+app.use("/admin", adminRouter);
 app.use("/post", postRouter);
 app.use("/user", userRouter);
 app.use("/liveupdate", liveUpdateRouter);

@@ -16,8 +16,13 @@ body {
 }
 
 .registration-wrapper {
-    max-width: 750px;
+    max-width: 1250px;
     width: 100%;
+}
+
+.post-image-registration {
+    height: 48px;
+    width: 48px;
 }
 
 /* Logo */

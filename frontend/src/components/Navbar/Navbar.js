@@ -39,7 +39,7 @@ function NavbarFun() {
 	const [Mobile, setMobile] = useState(false);
 	return (
 		<>
-			<nav className="navbar">
+			<nav className="navbar2">
 				<div className="nav-container">
 					<div className="start">
 						<div className="logo">

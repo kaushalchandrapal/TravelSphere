@@ -2,7 +2,7 @@
 
 import React, { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { axios } from "../../utils/axios";
+import axios from "../../utils/axios";
 import { toast } from "react-toastify";
 
 const CancelPay = () => {

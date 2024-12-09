@@ -1,47 +1,83 @@
 import React, { useEffect, useState } from 'react';
-import { Table, TableBody, TableCell, TableHead, TableRow, Button } from '@mui/material';
-import { axios } from '../../utils/axios';
+import axios from '../../utils/axios';
+import {
+  Grid,
+  Card,
+  CardContent,
+  CardActions,
+  CardMedia,
+  Typography,
+  Button,
+  Box,
+} from '@mui/material';
+import { Delete } from '@mui/icons-material';
 
 const Posts = () => {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
-    axios.get('/admin/posts')
-      .then((response) => setPosts(response.data))
-      .catch((error) => console.error('Error fetching posts:', error));
+    const fetchPosts = async () => {
+      try {
+        const { data } = await axios.get('/admin/posts');
+        setPosts(data);
+      } catch (error) {
+        console.error('Error fetching posts:', error.message);
+      }
+    };
+    fetchPosts();
   }, []);
 
-  const handleDelete = (id) => {
-    axios.delete(`/admin/posts/${id}`)
-      .then(() => setPosts(posts.filter((post) => post._id !== id)))
-      .catch((error) => console.error('Error deleting post:', error));
+  const handleDelete = async (id) => {
+    try {
+      await axios.delete(`/admin/posts/${id}`);
+      setPosts(posts.filter((post) => post._id !== id));
+    } catch (error) {
+      console.error('Error deleting post:', error.message);
+    }
   };
 
   return (
-    <Table>
-      <TableHead>
-        <TableRow>
-          <TableCell>Post ID</TableCell>
-          <TableCell>Description</TableCell>
-          <TableCell>User</TableCell>
-          <TableCell>Actions</TableCell>
-        </TableRow>
-      </TableHead>
-      <TableBody>
+    <Box sx={{ padding: '20px' }}>
+      <Typography variant="h4" gutterBottom>
+        Manage Posts
+      </Typography>
+      <Grid container spacing={3}>
         {posts.map((post) => (
-          <TableRow key={post._id}>
-            <TableCell>{post._id}</TableCell>
-            <TableCell>{post.description}</TableCell>
-            <TableCell>{post.userId}</TableCell>
-            <TableCell>
-              <Button variant="contained" color="error" onClick={() => handleDelete(post._id)}>
-                Delete
-              </Button>
-            </TableCell>
-          </TableRow>
+          <Grid item xs={12} sm={6} md={4} key={post._id}>
+            <Card elevation={3}>
+              <CardMedia
+                component="img"
+                image={post.image}
+                alt="Post Image"
+                sx={{
+                  objectFit: 'contain', // Ensures the image fits without cropping
+                  maxHeight: 200, // Adjusts the height dynamically
+                }}
+              />
+              <CardContent>
+                <Typography variant="h6" gutterBottom>
+                  {post.userName || 'Unknown Author'}
+                </Typography>
+                <Typography variant="body2" color="textSecondary">
+                  {post.description}
+                </Typography>
+              </CardContent>
+              <CardActions>
+                <Button
+                  size="small"
+                  variant="contained"
+                  color="error"
+                  startIcon={<Delete />}
+                  onClick={() => handleDelete(post._id)}
+                >
+                  Delete
+                </Button>
+              </CardActions>
+            </Card>
+          </Grid>
         ))}
-      </TableBody>
-    </Table>
+      </Grid>
+    </Box>
   );
 };
 

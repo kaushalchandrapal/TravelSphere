@@ -6,7 +6,7 @@ import Button from "../Button/ButtonComp";
 import InputField from "../InputField/InputField";
 import "../AddExpensePopUp/AddExpensePopUp.styles.css";
 import { addTransaction } from "../../redux/Transaction.reducer";
-import { axios } from "../../utils/axios";
+import axios from "../../utils/axios";
 import { expenseAdded } from "../../redux/expenseAdded.reducer";
 import { toast } from "react-toastify";
 import { IoCloseCircleOutline } from "react-icons/io5";

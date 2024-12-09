@@ -16,7 +16,8 @@ const Path = {
   MY_PLAN: "/myplan",
   CANCEL_PAY: "/cancel-Pay/:id",
   EMAIL_UPDATE: "/emailUpdate",
-  PASSWORD_UPDATE: "/passwordUpdate"
+  PASSWORD_UPDATE: "/passwordUpdate",
+  ADMIN_LAYOUT: "/admin/dashboard",
 };
 
 export default Path;

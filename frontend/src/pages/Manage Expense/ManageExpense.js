@@ -9,7 +9,7 @@ import { Button, IconComponent, Popup } from "../../components";
 import AddExpensePopUp from "../../components/AddExpensePopUp/AddExpensePopUp";
 import { useDispatch, useSelector } from "react-redux";
 import { selectedTripCard } from "../../redux/sample.reducers";
-import { axios } from "../../utils/axios";
+import axios from "../../utils/axios";
 import { expenseAdded } from "../../redux/expenseAdded.reducer";
 import { tripAdded } from "../../redux/addTrip.reducers";
 import EditTripPopUp from "../../components/PopUp/EditTripPopUp";

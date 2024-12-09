@@ -1,6 +1,18 @@
 import React from 'react';
-import { Box, CssBaseline, Drawer, List, ListItem, ListItemText, Toolbar, AppBar, Typography, Button } from '@mui/material';
-import { Outlet, Link, useNavigate } from 'react-router-dom';
+import { Outlet, Link } from 'react-router-dom';
+import {
+  Box,
+  CssBaseline,
+  AppBar,
+  Toolbar,
+  Typography,
+  Drawer,
+  List,
+  ListItem,
+  ListItemText,
+  Button,
+} from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 
 const drawerWidth = 240;
 
@@ -8,14 +20,9 @@ const AdminLayout = () => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    if (window.confirm('Are you sure you want to log out?')) {
-      // Clear localStorage
-      localStorage.removeItem('token');
-      localStorage.removeItem('user');
-
-      // Redirect to login page
-      navigate('/');
-    }
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    navigate('/login');
   };
 
   return (
@@ -23,21 +30,16 @@ const AdminLayout = () => {
       <CssBaseline />
       <AppBar
         position="fixed"
-        sx={{ width: `calc(100% - ${drawerWidth}px)`, ml: `${drawerWidth}px` }}
+        sx={{
+          width: `calc(100% - ${drawerWidth}px)`,
+          ml: `${drawerWidth}px`,
+        }}
       >
         <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
           <Typography variant="h6" noWrap>
             Admin Panel
           </Typography>
-          <Button
-            color="inherit"
-            onClick={handleLogout}
-            sx={{
-              textTransform: 'uppercase',
-              fontWeight: 'bold',
-              fontSize: '14px',
-            }}
-          >
+          <Button color="inherit" onClick={handleLogout}>
             Logout
           </Button>
         </Toolbar>

@@ -2,7 +2,7 @@
 import React from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { axios } from "../../utils/axios";
+import axios from "../../utils/axios";
 import { Button, InputField } from "../index";
 import Path from "../../constants/Path"
 import { useNavigate } from "react-router-dom";
