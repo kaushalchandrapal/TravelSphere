@@ -47,7 +47,7 @@ const EditPlanPopup = (props) => {
 
 			axios
 				.put(
-					`http://localhost:5001/plan/update/${props.planId}`,
+					`/plan/update/${props.planId}`,
 					{
 						startDate:
 							formValues.startDate !== ''
@@ -100,7 +100,7 @@ const EditPlanPopup = (props) => {
 	useEffect(() => {
 		async function myFunction() {
 			const response = await axios.get(
-				`http://localhost:5001/plan/${props.planId}`
+				`/plan/${props.planId}`
 			);
 			setPlanDetails(response.data);
 			setFormValues({

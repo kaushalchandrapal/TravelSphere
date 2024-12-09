@@ -33,7 +33,7 @@ const Post = (props) => {
 			if (window.confirm(message) === true) {
 				axios
 					.post(
-						`http://localhost:5001/post/delete/${props.postId}`
+						`/post/delete/${props.postId}`
 					)
 					.then(function (response) {
 						dispatch(createPost(response.data));

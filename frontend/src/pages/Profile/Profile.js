@@ -45,7 +45,7 @@ const Profile = () => {
     // Also code included if I would have got user data from user authentication
     // Therefore added static data of user
     axios
-      .get(`http://localhost:5001/post/view/${dataProfile._id}`, {
+      .get(`/post/view/${dataProfile._id}`, {
         headers: {
           'Authorization': `Bearer ${token}`,
         },
@@ -54,7 +54,7 @@ const Profile = () => {
         dispatch(createPost(response.data));
       });
     axios
-      .get(`http://localhost:5001/liveupdate/view/${dataProfile._id}`, {
+      .get(`/liveupdate/view/${dataProfile._id}`, {
         headers: {
           'Authorization': `Bearer ${token}`,
         },
@@ -83,7 +83,7 @@ const Profile = () => {
     try {
       console.log(formValues)
       const response = await axios.post(
-        `http://localhost:5001/user/update/${dataProfile._id}`,
+        `/user/update/${dataProfile._id}`,
         formValues,
         {
           headers : {

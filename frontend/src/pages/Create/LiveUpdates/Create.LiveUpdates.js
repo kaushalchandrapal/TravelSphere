@@ -57,7 +57,7 @@ const CreateLiveUpdates = () => {
 		if (errorMessage === '' && image !== undefined) {
 			axios
 				.post(
-					'http://localhost:5001/liveUpdate/create',
+					'/liveUpdate/create',
 					{
 						liveUpdate: formValues.liveUpdate,
 					},

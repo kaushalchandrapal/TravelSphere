@@ -40,7 +40,7 @@ function Login() {
     setIsSubmit(true);
   
     try {
-      const response = await Axios.post("http://localhost:5001/login", {
+      const response = await Axios.post("/login", {
         emailid: formValues.email,
         pass: formValues.password,
       });
@@ -74,7 +74,7 @@ function Login() {
   //         nav(Path.PROFILE_PAGE);
   //     }
 
-  // Axios.post('http://localhost:5001/login', {
+  // Axios.post('/login', {
   //     emailid: formValues.email,
   //     pass: formValues.password
   // });

@@ -14,7 +14,7 @@ const PlanPopup = (props) => {
 	useEffect(() => {
 		{props.planId &&  axios({
 			method: 'get',
-			url: `http://localhost:5001/plan/${props.planId}`,
+			url: `/plan/${props.planId}`,
 		})
 			.then((response) => {
 				setPlanDetails(response.data);

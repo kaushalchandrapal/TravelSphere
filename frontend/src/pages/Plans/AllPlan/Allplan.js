@@ -59,7 +59,7 @@ const AllPlan = (props) => {
 
 		await axios({
 			method:'post',
-			url:'http://localhost:5001/plan/mail/sendmail',
+			url:'/plan/mail/sendmail',
 			data:{
 				to:email,
 			},
@@ -87,7 +87,7 @@ const AllPlan = (props) => {
 			let message = 'Confirm delete?';
 			if (window.confirm(message) === true) {
 				axios
-					.delete(`http://localhost:5001/plan/delete/${data}`)
+					.delete(`/plan/delete/${data}`)
 					.catch((error) => {
 						console.log(error);
 					});
@@ -124,7 +124,7 @@ const AllPlan = (props) => {
 
 	const fetchPlan = async () => {
 		const response = await axios.get(
-			'http://localhost:5001/plan/'
+			'/plan/'
 		);
 		props.setProgress(100);
 		setPlans(response.data);
