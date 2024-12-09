@@ -12,6 +12,11 @@ function NavbarFun() {
 	const location = useLocation();
 	const [open, setOpen] = React.useState(false);
 	const [searchActive, setSearchActive] = React.useState(false);
+	const [user , setUser] = useState({});
+
+	useEffect(() => {
+			setUser(JSON.parse(localStorage?.getItem("user")))
+	},[])
 
 	const handleOpen = () => {
 		setOpen(!open);
@@ -165,7 +170,7 @@ function NavbarFun() {
 						<Link to={Path.PROFILE_PAGE}>
 							<button className="profile-pic-navbar">
 								<img
-									src="/Images/profilePic.jpg"
+									src={user?.profilePic}
 									alt=" "
 								/>
 							</button>

@@ -11,23 +11,26 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 function CreatePost() {
-	const initialValues = {
-		// Static data given, because user data did not came from authentication module!!
-		userId: 123,
-		// userId: props.userId,
-		userName: 'Shani',
-		// userName: props.userName,
-		postImage: '',
-		location: '',
-		description: '',
-	};
+	// const initialValues = {
+	// 	// Static data given, because user data did not came from authentication module!!
+	// 	userId: 123,
+	// 	// userId: props.userId,
+	// 	userName: 'Shani',
+	// 	// userName: props.userName,
+	// 	postImage: '',
+	// 	location: '',
+	// 	description: '',
+	// };
+
+	const [user , setUser] = useState({});
+
 	const initialErrorValues = {
 		imageError: '',
 		locationError: '',
 	};
 	const locationRegex = /^[a-z ,.'-]+$/i;
 
-	const [formValues, setFormValues] = useState(initialValues);
+	const [formValues, setFormValues] = useState({});
 	const [isSubmit, setIsSubmit] = useState(false);
 	const [image, setImage] = useState(null);
 	const [errorMessage, setErrorMessage] = useState(initialErrorValues);
@@ -40,6 +43,11 @@ function CreatePost() {
 		const { name, value } = e.target;
 		setFormValues({ ...formValues, [name]: value });
 	};
+
+	useEffect(() => {
+		setUser(JSON.parse(localStorage.getItem("user")));
+		setFormValues(JSON.parse(localStorage.getItem("user")));
+	},[])
 
 	const onImageChange = (e) => {
 		const imageUrl = validateImage(URL.createObjectURL(e.target.files[0]));
@@ -106,7 +114,7 @@ function CreatePost() {
 					.post(
 						'http://localhost:5001/post/create',
 						{
-							userId: formValues.userId,
+							userId: formValues._id,
 							userName: formValues.userName,
 							postImage: formValues.postImage,
 							location: formValues.location,

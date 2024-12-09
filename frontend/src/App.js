@@ -14,6 +14,7 @@ import {
 import { Route, Routes, useLocation } from "react-router-dom";
 import { Navbar } from "./components";
 import Path from "./constants/Path";
+import AccessibilityPanel from "./components/AccessibilityPanel/AccessibilityPanel";
 import Login from "./components/loginModule/login";
 import RegistrationForm from "./components/loginModule/register";
 import Forgotpass from "./components/loginModule/forgotpass";
@@ -65,6 +66,7 @@ function App() {
         <Route path={Path.MY_PLAN} element={<MyPlan />} />
         <Route path={Path.CANCEL_PAY} element={<CancelPay />} />
       </Routes>
+      <AccessibilityPanel />
     </div>
   );
 }

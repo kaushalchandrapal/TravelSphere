@@ -19,7 +19,7 @@ const viewPostByUserId = (req, res) => {
 	const userId = parseInt(req.params.id);
 
 	const getPost = async () => {
-		const data = await Post.find({ userId }).sort({ date: -1 });
+		const data = await Post.find({ userId : req.params.id });
 		res.json(data);
 	};
 
